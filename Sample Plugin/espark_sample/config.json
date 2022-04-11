@@ -1,0 +1,52 @@
+{
+    "id": "espark_sample",
+    "version": "1.0.10",
+    "meta": {
+        "name": {
+            "text": "eSpark Plugin"
+        },
+        "description": {
+            "text": "This is the sample plugin to add fake devices"
+        },
+        "author": {
+            "text": "Embedded Firmware Department"
+        },
+        "email": "kamran@esparkconsultants.com",
+        "hidden": false,
+        "deny_uninstall": false,
+        "type": "node",
+        "language": "lua",
+        "placement": {
+            "static": true,
+            "custom": true
+        }
+    },
+    "type": "gateway",
+    "dependencies": {
+        "firmware": "2.0",
+        "addons": [
+            {
+                "id": "lua",
+                "version": "1.0"
+            }
+        ]
+    },
+    "permissions": [
+        "core",
+        "logging",
+        "network",
+        "storage",
+        "timer"
+    ],
+    "executionPolicy": "restoreLastScriptState",
+    "startup": "scripts/startup",
+    "teardown": "scripts/teardown",
+    "gateway": {
+        "name": "dsc",
+        "label": "eSpark Sample Plugin",
+        "forceRemoveDeviceCommand": "HUB:ezlo_dsc/scripts/delete_device",
+        "setItemValueCommand": "HUB:ezlo_dsc/scripts/set_item_value",
+        "setItemValueResponsePolicy": "auto",
+        "setSettingValueCommand": "HUB:ezlo_dsc/scripts/set_setting_value"
+    }
+}

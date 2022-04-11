@@ -1,0 +1,37 @@
+{
+    "configuration": {
+        "type": "static",
+        "placement": "device,plugin",
+        "script": "HUB:espark_sample/scripts/add_device",
+        "inputs": [
+            {
+                "name": "Device name",
+                "description": "The name of the sample device, e.g. \"RGB Bulb\".",
+                "required": true,
+                "field": "name",
+                "type": "string"
+            },
+            {
+                "name": "Category",
+                "description": "The category in which device falls",
+                "required": true,
+                "field": "category",
+                "type": "string"
+            },
+            {
+                "name": "PIN code",
+                "description": "The pin code of the sample device, e.g. \"192.168.10.10\".",
+                "required": true,
+                "field": "pin",
+                "type": "string"
+            },
+            {
+                "name": "Access mode",
+                "description": "The access mode provided to users",
+                "required": true,
+                "field": "access",
+                "type": "string"
+            }
+        ]   
+    }
+}

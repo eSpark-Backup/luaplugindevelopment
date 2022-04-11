@@ -1,0 +1,64 @@
+{
+    "version":"1.0",
+    "when": [
+        {
+            "blockId": "0001-00000000",
+            "item_filter": {
+                "names": [ "zones_status" ]
+            },
+            "device_filter": {
+                "category": [
+                    { "alarm_panel": [] }
+                ]
+            },
+            "label": {
+                "lang_tag": "when_partition_state_changes",
+                "text": "Whenever the partition state changes"
+            },
+            "blockType": "when",
+            "blockOptions": {
+                "method": {
+                    "name": "isItemState",
+                    "args": {
+                        "item": "item",
+                        "value": "value"
+                    }
+                }
+            },
+            "fields": [
+                {
+                    "name": "item",
+                    "type": "item"
+                },
+                {
+                    "name": "value",
+                    "type": "token",
+                    "options": [
+                        {
+                            "value": "disarmed",
+                            "label": {
+                                "lang_tag": "partition_disarmed",
+                                "text": "Partition disarmed"
+                            }
+                        },
+                        {
+                            "value": "away",
+                            "label": {
+                                "lang_tag": "partition_armed_away",
+                                "text": "Partition armed away"
+                            }
+                        },
+                        {
+                            "value": "stay",
+                            "label": {
+                                "lang_tag": "partition_armed_stay",
+                                "text": "Partition armed stay"
+                            }
+                        }
+                    ],
+                    "value": "disarmed"
+                }
+            ]
+        }
+    ]
+}
