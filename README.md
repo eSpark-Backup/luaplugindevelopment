@@ -1,2 +1,2 @@
 # LuaPluginDevelopment
-Develop plugins for Ezlo client in Lua Language
+Develop plugins for Ezlo innovations in Lua Language
