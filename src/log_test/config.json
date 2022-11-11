@@ -31,7 +31,8 @@
 	"permissions": [
 		"core",
 		"logging",
-		"storage"
+		"storage",
+		"http"
 	],
 	"executionPolicy": "restoreLastScriptState",
 	"startup": "scripts/startup",
