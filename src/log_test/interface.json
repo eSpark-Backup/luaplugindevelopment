@@ -1,0 +1,23 @@
+{
+	"configuration":{
+		"type":"static",
+		"script":"ezlo.log_test/scripts/configure_new",
+		"inputs":[
+
+			{
+				"name":"String",
+				"description":"String input",
+				"field":"input",
+				"required":true,
+				"type":"string"
+			},
+			{
+				"name":"Integer",
+				"description":"Integer input",
+				"field":"input",
+				"required":false,
+				"type":"int"
+			}
+		]
+	}
+}
