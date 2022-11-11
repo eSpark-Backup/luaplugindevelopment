@@ -5,17 +5,17 @@
 		"inputs":[
 
 			{
-				"name":"String",
-				"description":"String input",
-				"field":"input",
+				"name":"URL",
+				"description":"Enter URL here",
+				"field":"url",
 				"required":true,
 				"type":"string"
 			},
 			{
 				"name":"Integer",
-				"description":"Integer input",
-				"field":"input",
-				"required":false,
+				"description":"Select any number",
+				"field":"num",
+				"required":true,
 				"type":"int"
 			}
 		]
