@@ -1,7 +1,7 @@
 {
 	"configuration":{
 		"type":"static",
-		"script":"ezlo.log_test/scripts/configure_new",
+		"script":"ezlo.log_test/scripts/configure",
 		"inputs":[
 
 			{
