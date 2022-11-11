@@ -1,3 +1,3 @@
-local log = require ("logging")
+local logging = require("logging")
 
-log.info("The plugin has been configured successfully - Faizan")
+logging.info("The plugin has been configured successfully")
