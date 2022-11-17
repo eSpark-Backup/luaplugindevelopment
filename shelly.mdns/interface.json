@@ -1,6 +1,0 @@
-{
-	"configuration":{
-		"type":"static",
-		"script":"shelly.mdns/scripts/conf"
-	}
-}
