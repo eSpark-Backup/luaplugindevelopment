@@ -1,0 +1,30 @@
+{
+	"configuration":{
+		"type":"static",
+		"script":"minhttp.log_test/scripts/configure",
+		"inputs":[
+
+			{
+				"name":"URL",
+				"description":"Enter MultiCastIP Here:239.255.255.250",
+				"field":"multicastIP",
+				"required":false,
+				"type":"string"
+			},
+			{
+				"name":"Integer",
+				"description":"Enter MultiCastIP Port:1900",
+				"field":"multicastPort",
+				"required":false,
+				"type":"int"
+			},
+			{
+				"name":"Payload",
+				"description":"Enter UPnP Payload seprated line /r/n/z",
+				"field":"PayloadString",
+				"required":false,
+				"type":"string"
+			}
+		]
+	}
+}

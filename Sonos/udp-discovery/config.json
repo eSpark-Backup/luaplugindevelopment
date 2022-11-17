@@ -1,0 +1,47 @@
+{
+	"id": "minhttp.log_test",
+	"version": "1.0.0",
+	"meta": {
+		"name": {
+			"text": "MASB Minimal Test Plugin"
+		},
+		"description": {
+			"text": "MASB plugin with the bare minimal configs, and no functionality"
+		},
+		"author": {
+			"text": "MASB Innovation"
+		},
+		"type": "node",
+		"language": "lua",
+		"placement": {
+			"static": true,
+			"custom": true
+		}
+	},
+	"type": "gateway",
+	"dependencies": {
+		"firmware": "2.0",
+		"addons": [
+			{
+				"id": "lua",
+				"version": "1.0"
+			}
+		]
+	},
+	"permissions": [
+		"core",
+		"logging",
+		"storage",		
+		"network",
+		"http"
+	],
+	"executionPolicy": "restoreLastScriptState",
+	"startup": "scripts/startup",
+	"teardown": "scripts/teardown",
+	"gateway": {
+		"name": "minhttp.log_test",
+		"label": "MASB Minimal test plugin",
+		"setItemValueCommand": "HUB:minhttp.log_test/scripts/set_item_value",
+		"forceRemoveDeviceCommand": "HUB:minhttp.log_test/scripts/delete_device"
+	}
+}
