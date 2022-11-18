@@ -1,56 +1,12 @@
 local logging = require ("logging")
---local http = require ("http")
 logging.info("The plugin has been started successfully")
 
-require("HUB:shelly.mdns/scripts/nethosts")
+require("network")
 
+local ip_addresses = "192.168.18.1 - 192.168.18.250"
+local ports = {80, 2020, 30, 8080}
+local ip_version = "IPv4"
+local script = "HUB:shelly.mdns/scripts/handle_network_scan_results"
+local scan_id2 = network.start_scan_network(script, ip_addresses, ip_version,  ports )
 
-
-
- --**************************************************************************************************************--
-
---[[ 
-
-
-local params = ...
-
-local network = require("network")
-
-if params.event == "requestfrom" then
-    network.sendto(
-        params.data.handle,
-        params.data.user_data .. params.data.datagram,
-        params.data.address,
-        params.data.port)
-    return
-end
-
-local handle = network.udp();
-network.setsockname(handle, "*", "80")
-network.sendto(handle, "Is there anyone?", "127.0.0.1", "80")
-network.requestfrom(handle, "HUB:shelly.mdns/scripts/handle_network_scan_results", "Hi, ")
-logging.info("Logger1 called before request()")
-
-
-
- ]]
-
-
-
-
- --**************************************************************************************************************--
-
-
---[[ 
-
-require "network"
-
-handle = network.connect( { ip = "127.0.0.1", port = "80", connection_type = "TCP" } )
-if not handle then
-   print( "fail to connect" )
-else
-   print( "connection successful" )
-end
-
-
- ]]
+logging.info("scanning is started, scan id2: " .. tostring(scan_id2))
