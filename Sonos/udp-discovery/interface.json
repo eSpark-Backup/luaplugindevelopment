@@ -5,22 +5,28 @@
 		"inputs":[
 
 			{
-				"name":"URL",
+				"name":"Multicast IP",
 				"description":"Enter MultiCastIP Here:239.255.255.250",
 				"field":"multicastIP",
 				"required":false,
 				"type":"string"
 			},
 			{
-				"name":"Integer",
+				"name":"Multicast Port",
 				"description":"Enter MultiCastIP Port:1900",
 				"field":"multicastPort",
 				"required":false,
 				"type":"int"
 			},
 			{
+				"name":"Discovery Duration(sec)",
+				"description":"20(sec)",
+				"field":"multicastDuration",
+				"required":false,
+				"type":"int"
+			},{
 				"name":"Payload",
-				"description":"Enter UPnP Payload seprated line /r/n/z",
+				"description":"M-SEARCH * HTTP/1.1\r\n HOST: 239.255.255.250:1900\r\n MAN: 'ssdp:discover'\r\n MX:1\r\n ST:urn:schemas-upnp-org:device:ZonePlayer:1\r\n",
 				"field":"PayloadString",
 				"required":false,
 				"type":"string"
