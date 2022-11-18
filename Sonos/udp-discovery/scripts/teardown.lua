@@ -1,3 +1,3 @@
 local logging = require ("logging")
 
-logging.info("The plugin has been TEARED DOWN SUCCESSFULLY")
+logging.info("Sonos SSDP Plugin has been TEARED DOWN SUCCESSFULLY")
