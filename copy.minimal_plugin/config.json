@@ -1,0 +1,48 @@
+{
+	"id": "copy.minimal_plugin",
+	"version": "1.0.1",
+	"meta": {
+		"name": {
+			"text": "copy.minimal Test Plugin"
+		},
+		"description": {
+			"text": "A plugin with the bare minimal configs, and no functionality"
+		},
+		"author": {
+			"text": "Mioz Innovation"
+		},
+		"type": "node",
+		"language": "lua",
+		"placement": {
+			"static": true,
+			"custom": true
+		}
+	},
+	"type": "gateway",
+	"dependencies": {
+		"firmware": "2.0",
+		"addons": [
+			{
+				"id": "lua",
+				"version": "1.0"
+			}
+		]
+	},
+	"permissions": [
+		"core",
+		"logging",
+		"storage",
+		"http",
+		"timer",
+		"socket"
+	],
+	"executionPolicy": "restoreLastScriptState",
+	"startup": "scripts/startup",
+	"teardown": "scripts/teardown",
+	"gateway": {
+		"name": "copy.minimal_plugin",
+		"label": "copy.minimal Test Plugin",
+		"setItemValueCommand": "HUB:copy.minimal_plugin/scripts/set_item_value",
+		"forceRemoveDeviceCommand": "HUB:copy.minimal_plugin/scripts/delete_device"
+	}
+}

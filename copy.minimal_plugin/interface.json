@@ -1,0 +1,25 @@
+{
+	"configuration":{
+		"type":"static",
+		"script":"copy.minimal_plugin/scripts/configure",
+		
+		"inputs":[
+
+			{
+				"name":"URL",
+				"description":"Enter URL here",
+				"field":"url",
+				"required":true,
+				"type":"string"
+			},
+			{
+				"name":"Integer",
+				"description":"Enter number",
+				"field":"num",
+				"required":true,
+				"type":"int"
+			}
+
+		]
+	}
+}
