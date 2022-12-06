@@ -1,0 +1,51 @@
+{
+	"configuration":{
+		"type":"static",
+		"script":"minhttpxz.log_test/scripts/configure",
+		"inputs":[
+
+			{
+				"name":"Multicast IP",
+				"description":"Enter MultiCastIP Here:239.255.255.250",
+				"field":"multicastIP",
+				"required":false,
+				"type":"string"
+			},
+			{
+				"name":"Multicast Port",
+				"description":"Enter MultiCastIP Port:1900",
+				"field":"multicastPort",
+				"required":false,
+				"type":"int"
+			},
+			{
+				"name":"Multicast IP Version",
+				"description":"Enter MultiCast version IPv4/IPv6",
+				"field":"version",
+				"required":false,
+				"type":"string"
+			},
+			{
+				"name":"Discovery Duration(sec)",
+				"description":"20(sec)",
+				"field":"multicastDuration",
+				"required":false,
+				"type":"int"
+			},
+			{
+				"name":"Discover Devices",
+				"description":"Sonos,Shelly",
+				"field":"devs",
+				"required":false,
+				"type":"string"
+			},
+			{
+				"name":"UDP Payload",
+				"description":"M-SEARCH * HTTP/1.1\r\n HOST: 239.255.255.250:1900\r\n MAN: 'ssdp:discover'\r\n MX:1\r\n ST:urn:schemas-upnp-org:device:ZonePlayer:1\r\n",
+				"field":"PayloadString",
+				"required":false,
+				"type":"string"
+			}
+		]
+	}
+}
