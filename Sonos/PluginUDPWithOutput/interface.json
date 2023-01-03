@@ -1,0 +1,42 @@
+{
+	"configuration":{
+		"type":"static",
+		"script":"minhttpwaqar1.log_test/scripts/configure",
+		"inputs":
+			[
+				{
+					"name": "Payload string",
+					"description": "Enter payload string",
+					"field": "PayloadString",
+					"required": false,
+					"type": "string"
+				},
+
+
+				{
+					"name": "Duration to search for multicast packets",
+					"description": "Multicast search duration",
+					"field": "multicastDuration",
+					"required": false,
+					"type": "int"
+				},
+
+				{
+					"name": "multicast IP",
+					"description": "IP",
+					"field": "multicastIP",
+					"required": false,
+					"type": "string"
+				},
+				{
+					"name": "multicastPorts",
+					"description": "Ports",
+					"field": "multicastPort",
+					"required": false,
+					"type": "string"
+				}
+
+			]
+	
+	}
+}
