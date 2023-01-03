@@ -1,0 +1,834 @@
+2023-01-03 13:20:44.313705 DEBUG: LuaAddon: start to execute a script: HUB:minhttpmasb1.log_test/scripts/configure, parameters: {}
+2023-01-03 13:20:44.314519 DEBUG: A plugin's script HUB:minhttpmasb1.log_test/scripts/configure has been loaded
+2023-01-03 13:20:44.314858 INFO : minhttpmasb1.log_test: Logger1 called before network.udp();
+************************************************
+Select value for network.handle =0
+Select value for multicastIP =239.255.255.250
+Select value for multicastPort =1900
+Select value for multicastDuration =20
+Select value for PayloadString =M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:schemas-upnp-org:device:ZonePlayer:1
+
+
+************************************************
+2023-01-03 13:20:44.315332 INFO : minhttpmasb1.log_test: Logger1 called before setsockname
+2023-01-03 13:20:44.315459 INFO : minhttpmasb1.log_test: Logger1 called before sendto
+2023-01-03 13:20:44.315751 DEBUG: AsyncSocket: incomingDataEventHandler
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:schemas-upnp-org:device:ZonePlayer:1
+
+
+Address: 192.168.18.48
+Port: 1900
+2023-01-03 13:20:44.315921 DEBUG: EventsLoop: pause an event source - event source: 0x8a97d8, fd: 12
+2023-01-03 13:20:44.316086 DEBUG: EventsLoop: resume an event source - event source: 0x8a97d8, fd: 12
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Microsoft Edge/108.0.1462.54 Windows
+
+
+Address: 192.168.18.66
+Port: 62403
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Chromium/106.0.5249.119 Windows
+
+
+Address: 192.168.18.16
+Port: 61961
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Google Chrome/108.0.5359.125 Windows
+
+
+Address: 192.168.18.152
+Port: 61870
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Chromium/106.0.5249.119 Windows
+
+
+Address: 192.168.18.66
+Port: 62399
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Microsoft Edge/108.0.1462.54 Windows
+
+
+Address: 192.168.18.20
+Port: 62490
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Google Chrome/108.0.5359.125 Windows
+
+
+Address: 192.168.18.66
+Port: 62401
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Microsoft Edge/108.0.1462.54 Windows
+
+
+Address: 192.168.18.66
+Port: 62403
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Chromium/106.0.5249.119 Windows
+
+
+Address: 192.168.18.16
+Port: 61961
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Google Chrome/108.0.5359.125 Windows
+
+
+Address: 192.168.18.152
+Port: 61870
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Chromium/106.0.5249.119 Windows
+
+
+Address: 192.168.18.66
+Port: 62399
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Google Chrome/108.0.5359.125 Windows
+
+
+Address: 192.168.18.66
+Port: 62401
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Microsoft Edge/108.0.1462.54 Windows
+
+
+Address: 192.168.18.66
+Port: 62403
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Google Chrome/108.0.5359.124 Mac OS X
+
+
+Address: 192.168.18.110
+Port: 61465
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Chromium/106.0.5249.119 Windows
+
+
+Address: 192.168.18.16
+Port: 61961
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Microsoft Edge/108.0.1462.54 Windows
+
+
+Address: 192.168.18.137
+Port: 60519
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Chromium/108.0.5359.125 Windows
+
+
+Address: 192.168.18.137
+Port: 60520
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Google Chrome/108.0.5359.125 Windows
+
+
+Address: 192.168.18.137
+Port: 60521
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Google Chrome/108.0.5359.124 Mac OS X
+
+
+Address: 192.168.18.110
+Port: 61465
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Chromium/106.0.5249.119 Windows
+
+
+Address: 192.168.18.16
+Port: 61961
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Microsoft Edge/108.0.1462.54 Windows
+
+
+Address: 192.168.18.137
+Port: 60519
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Chromium/108.0.5359.125 Windows
+
+
+Address: 192.168.18.137
+Port: 60520
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Google Chrome/108.0.5359.125 Windows
+
+
+Address: 192.168.18.137
+Port: 60521
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Google Chrome/108.0.5359.124 Mac OS X
+
+
+Address: 192.168.18.110
+Port: 61465
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Microsoft Edge/108.0.1462.54 Windows
+
+
+Address: 192.168.18.137
+Port: 60519
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Chromium/108.0.5359.125 Windows
+
+
+Address: 192.168.18.137
+Port: 60520
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Google Chrome/108.0.5359.125 Windows
+
+
+Address: 192.168.18.137
+Port: 60521
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Google Chrome/108.0.5359.124 Mac OS X
+
+
+Address: 192.168.18.110
+Port: 61465
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Microsoft Edge/108.0.1462.54 Windows
+
+
+Address: 192.168.18.137
+Port: 60519
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Chromium/108.0.5359.125 Windows
+
+
+Address: 192.168.18.137
+Port: 60520
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Google Chrome/108.0.5359.125 Windows
+
+
+Address: 192.168.18.137
+Port: 60521
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Google Chrome/108.0.5359.125 Windows
+
+
+Address: 192.168.18.15
+Port: 57032
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Microsoft Edge/108.0.1462.54 Windows
+
+
+Address: 192.168.18.15
+Port: 57034
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Google Chrome/108.0.5359.125 Windows
+
+
+Address: 192.168.18.15
+Port: 57032
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Microsoft Edge/108.0.1462.54 Windows
+
+
+Address: 192.168.18.15
+Port: 57034
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Google Chrome/108.0.5359.125 Windows
+
+
+Address: 192.168.18.15
+Port: 57032
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Microsoft Edge/108.0.1462.54 Windows
+
+
+Address: 192.168.18.15
+Port: 57034
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Google Chrome/108.0.5359.125 Windows
+
+
+Address: 192.168.18.15
+Port: 57032
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Google Chrome/108.0.5359.124 Linux
+
+
+Address: 172.20.0.1
+Port: 41316
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Google Chrome/108.0.5359.124 Linux
+
+
+Address: 192.168.18.48
+Port: 38238
+2023-01-03 13:20:53.817617 DEBUG: AsyncSocket: incomingDataEventHandler
+2023-01-03 13:20:53.817691 DEBUG: EventsLoop: pause an event source - event source: 0x8a97d8, fd: 12
+2023-01-03 13:20:53.817716 DEBUG: EventsLoop: resume an event source - event source: 0x8a97d8, fd: 12
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Microsoft Edge/108.0.1462.54 Windows
+
+
+Address: 192.168.18.15
+Port: 57034
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Google Chrome/108.0.5359.124 Linux
+
+
+Address: 172.20.0.1
+Port: 41316
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Google Chrome/108.0.5359.124 Linux
+
+
+2023-01-03 13:20:54.824264 DEBUG: AsyncSocket: incomingDataEventHandler
+Address: 192.168.18.48
+Port: 38238
+2023-01-03 13:20:54.824325 DEBUG: EventsLoop: pause an event source - event source: 0x8a97d8, fd: 12
+2023-01-03 13:20:54.824349 DEBUG: EventsLoop: resume an event source - event source: 0x8a97d8, fd: 12
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Chromium/106.0.5249.119 Windows
+
+
+Address: 192.168.18.47
+Port: 59194
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Microsoft Edge/108.0.1462.54 Windows
+
+
+Address: 192.168.18.47
+Port: 52303
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Google Chrome/108.0.5359.125 Windows
+
+
+Address: 192.168.18.47
+Port: 52304
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Google Chrome/108.0.5359.124 Linux
+
+
+Address: 172.20.0.1
+Port: 41316
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Google Chrome/108.0.5359.124 Linux
+
+
+2023-01-03 13:20:55.824440 DEBUG: AsyncSocket: incomingDataEventHandler
+Address: 192.168.18.48
+Port: 38238
+2023-01-03 13:20:55.824485 DEBUG: EventsLoop: pause an event source - event source: 0x8a97d8, fd: 12
+2023-01-03 13:20:55.824548 DEBUG: EventsLoop: resume an event source - event source: 0x8a97d8, fd: 12
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Chromium/106.0.5249.119 Windows
+
+
+Address: 192.168.18.47
+Port: 59194
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Microsoft Edge/108.0.1462.54 Windows
+
+
+Address: 192.168.18.47
+Port: 52303
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Google Chrome/108.0.5359.125 Windows
+
+
+Address: 192.168.18.47
+Port: 52304
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Google Chrome/108.0.5359.124 Linux
+
+
+Address: 172.20.0.1
+Port: 41316
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Google Chrome/108.0.5359.124 Linux
+
+
+Address: 192.168.18.48
+Port: 38238
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Chromium/106.0.5249.119 Windows
+
+
+Address: 192.168.18.47
+Port: 59194
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Google Chrome/108.0.5359.125 Windows
+
+
+Address: 192.168.18.47
+Port: 52304
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Microsoft Edge/108.0.1462.54 Windows
+
+
+Address: 192.168.18.47
+Port: 52303
+Message: NOTIFY * HTTP/1.1
+HOST: 239.255.255.250:1900
+LOCATION: http://192.168.18.134:40281
+SERVER: Windows/10.0.22000 UPnP/1.1 uTorrent(client)(native)/355
+NTS: ssdp:alive
+ST: ut:client:service:pairing
+USN: uuid:74bdd71b-e43e-ec11-be69-ac7ba184e56c
+FRIENDLYNAME:XEE
+HH:lcWR4GsIRuZ8z18L
+
+
+Address: 192.168.18.134
+Port: 52554
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Chromium/106.0.5249.119 Windows
+
+
+Address: 192.168.18.47
+Port: 59194
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Google Chrome/108.0.5359.125 Windows
+
+
+Address: 192.168.18.47
+Port: 52304
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Microsoft Edge/108.0.1462.54 Windows
+
+
+Address: 192.168.18.47
+Port: 52303
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Google Chrome/108.0.5359.125 Windows
+
+
+Address: 192.168.18.34
+Port: 55008
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Microsoft Edge/108.0.1462.54 Windows
+
+
+Address: 192.168.18.34
+Port: 55009
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Google Chrome/108.0.5359.125 Windows
+
+
+Address: 192.168.18.173
+Port: 57307
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Google Chrome/108.0.5359.125 Windows
+
+
+Address: 192.168.18.34
+Port: 55008
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Google Chrome/108.0.5359.125 Windows
+
+
+Address: 192.168.18.12
+Port: 59434
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Microsoft Edge/108.0.1462.54 Windows
+
+
+Address: 192.168.18.34
+Port: 55009
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Google Chrome/108.0.5359.125 Windows
+
+
+Address: 192.168.18.173
+Port: 57307
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Google Chrome/108.0.5359.125 Windows
+
+
+Address: 192.168.18.34
+Port: 55008
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Google Chrome/108.0.5359.125 Windows
+
+
+Address: 192.168.18.12
+Port: 59434
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Microsoft Edge/108.0.1462.54 Windows
+
+
+Address: 192.168.18.34
+Port: 55009
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Google Chrome/108.0.5359.125 Windows
+
+
+Address: 192.168.18.173
+Port: 57307
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Google Chrome/108.0.5359.125 Windows
+
+
+Address: 192.168.18.34
+Port: 55008
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Chromium/106.0.5249.119 Windows
+
+
+Address: 192.168.18.132
+Port: 62275
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Google Chrome/108.0.5359.125 Windows
+
+
+Address: 192.168.18.12
+Port: 59434
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Microsoft Edge/108.0.1462.54 Windows
+
+
+Address: 192.168.18.34
+Port: 55009
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Google Chrome/108.0.5359.125 Windows
+
+
+Address: 192.168.18.173
+Port: 57307
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Google Chrome/108.0.5359.125 Windows
+
+
+Address: 192.168.18.12
+Port: 59434
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+USER-AGENT: Chromium/106.0.5249.119 Windows
+
+
+Address: 192.168.18.132
+2023-01-03 13:21:03.965905 DEBUG: AsyncSocket: incomingDataEventHandler
+Port: 62275
+2023-01-03 13:21:03.965967 DEBUG: EventsLoop: pause an event source - event source: 0x8a97d8, fd: 12
+2023-01-03 13:21:03.965993 DEBUG: EventsLoop: resume an event source - event source: 0x8a97d8, fd: 12
+Message: M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:dial-multiscreen-org:service:dial:1
+
+
+Address: 192.168.18.27
+Port: 62835
+Sonos Discovery Plugin has been Ended Configuring SucceSSfullY
+Sonos Discovery Plugin has been Ended Configuring SucceSSfullY
+Sonos Discovery Plugin has been Ended Configuring SucceSSfullY
+2023-01-03 13:21:04.003655 INFO : minhttpmasb1.log_test: *********************************************************************************
+2023-01-03 13:21:04.003694 INFO : minhttpmasb1.log_test: ***************Starting Shelly Devices Searching Starting************************
+2023-01-03 13:21:04.003704 INFO : minhttpmasb1.log_test: *********************************************************************************
+2023-01-03 13:21:04.003807 INFO : LuaAddon: a script: HUB:minhttpmasb1.log_test/scripts/configure has been executed successfully
+2023-01-03 13:21:04.942805 DEBUG: AsyncSocket: incomingDataEventHandler
+2023-01-03 13:21:04.942980 DEBUG: EventsLoop: pause an event source - event source: 0x8a97d8, fd: 12
+
