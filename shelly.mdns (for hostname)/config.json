@@ -1,0 +1,49 @@
+{
+	"id": "shelly.mdns",
+	"version": "1.0.0",
+	"meta": {
+		"name": {
+			"text": "Shelly mDNS Plugin"
+		},
+		"description": {
+			"text": "User Defined plugin to search mDNS shelly devices"
+		},
+		"author": {
+			"text": "Shelly Device"
+		},
+		"type": "node",
+		"language": "lua",
+		"placement": {
+			"static": true,
+			"custom": true
+		}
+	},
+	"type": "gateway",
+	"dependencies": {
+		"firmware": "2.0",
+		"addons": [
+			{
+				"id": "lua",
+				"version": "1.0"
+			}
+		]
+	},
+	"permissions": [
+		"core",
+		"logging",
+		"storage",
+		"http",
+		"socket",
+		"network",
+		"timer"
+	],
+	"executionPolicy": "restoreLastScriptState",
+	"startup": "scripts/startup",
+	"teardown": "scripts/teardown",
+	"gateway": {
+		"name": "shelly.mdns",
+		"label": "Shelly mDNS Plugin",
+		"setItemValueCommand": "HUB:shelly.mdns/scripts/set_item_value",
+		"forceRemoveDeviceCommand": "HUB:shelly.mdns/scripts/delete_device"
+	}
+}

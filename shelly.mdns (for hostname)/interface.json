@@ -1,0 +1,38 @@
+{
+	"configuration":
+	{
+		"type":"static",
+		"script":"shelly.mdns/scripts/conf",
+	
+		"inputs":
+			[
+				{
+					"name": "IP Range",
+					"description": "IP address range (Comma Separated or by hyphen)",
+					"field": "range",
+					"required": false,
+					"type": "string"
+				},
+
+
+				{
+					"name": "IP Version",
+					"description": "IP Version (IPv4 or IPv6)",
+					"field": "version",
+					"required": false,
+					"type": "string"
+				},
+
+				{
+					"name": "Ports",
+					"description": "Ports",
+					"field": "ports",
+					"required": false,
+					"type": "int"
+				}
+
+			]
+	
+	}	
+
+}
