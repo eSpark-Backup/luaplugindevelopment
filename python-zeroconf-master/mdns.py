@@ -2,13 +2,13 @@
 from zeroconf import ServiceBrowser, ServiceListener, Zeroconf
 from zeroconf import ZeroconfServiceTypes
 x="\n".join(ZeroconfServiceTypes.find())   # Shows All Services
+print("\n*********************Services Types******************")
+print(x)
+print("***********Services Types Searching Ends*************\n")
 
 def Convert(string):
 	li = list(string.split("\n"))
 	return li
-
-# Driver code
-
 p = Convert(x)
 
 class MyListener(ServiceListener):
