@@ -1,0 +1,125 @@
+2022-11-21 18:18:42.459639 DEBUG: LuaAddon: start to execute a script: HUB:minhttp.log_test/scripts/configure, parameters: {}
+2022-11-21 18:18:42.461562 DEBUG: A plugin's script HUB:minhttp.log_test/scripts/configure has been loaded
+2022-11-21 18:18:42.462741 INFO : minhttp.log_test: Logger1 called before network.udp();
+2022-11-21 18:18:42.462997 INFO : minhttp.log_test: ************************************************
+2022-11-21 18:18:42.463149 INFO : minhttp.log_test: Select value for network.handle =1
+2022-11-21 18:18:42.463277 INFO : minhttp.log_test: Select value for multicastIP =239.255.255.250
+2022-11-21 18:18:42.463399 INFO : minhttp.log_test: Select value for multicastPort =1900
+2022-11-21 18:18:42.463526 INFO : minhttp.log_test: Select value for multicastDuration =20
+2022-11-21 18:18:42.463686 INFO : minhttp.log_test: Select value for PayloadString =M-SEARCH * HTTP/1.1
+HOST: 239.255.255.250:1900
+MAN: "ssdp:discover"
+MX: 1
+ST: urn:schemas-upnp-org:device:ZonePlayer:1
+
+2022-11-21 18:18:42.463813 INFO : minhttp.log_test: ************************************************
+2022-11-21 18:18:42.463934 INFO : minhttp.log_test: Logger1 called before setsockname
+2022-11-21 18:18:42.464051 INFO : minhttp.log_test: Logger1 called before sendto
+2022-11-21 18:18:42.799225 INFO : minhttp.log_test: Message: HTTP/1.1 200 OK
+CACHE-CONTROL: max-age = 1800
+EXT:
+LOCATION: http://10.100.132.36:1400/xml/device_description.xml
+SERVER: Linux UPnP/1.0 Sonos/70.3-35070 (ZPS18)
+ST: urn:schemas-upnp-org:device:ZonePlayer:1
+USN: uuid:RINCON_48A6B887691A01400::urn:schemas-upnp-org:device:ZonePlayer:1
+X-RINCON-HOUSEHOLD: Sonos_WNa312M5DazWnQEdgq28Ktg2kd
+X-RINCON-BOOTSEQ: 10393
+BOOTID.UPNP.ORG: 10393
+X-RINCON-WIFIMODE: 0
+X-RINCON-VARIANT: 2
+HOUSEHOLD.SMARTSPEAKER.AUDIO: Sonos_WNa312M5DazWnQEdgq28Ktg2kd.TefZrDymPNxN6HGV6zuf
+SECURELOCATION.UPNP.ORG: https://10.100.132.36:1443/xml/device_description.xml
+X-SONOS-HHSECURELOCATION: https://10.100.132.36:1843/xml/device_description.xml
+
+2022-11-21 18:18:42.799523 INFO : minhttp.log_test: Address: 10.100.132.36
+2022-11-21 18:18:42.799672 INFO : minhttp.log_test: Port: 42289
+2022-11-21 18:18:54.224876 INFO : minhttp.log_test: Message: HTTP/1.1 200 OK
+HOST: 239.255.255.250:1900
+EXT:
+CACHE-CONTROL: max-age=100
+LOCATION: http://10.100.132.216:80/description.xml
+SERVER: Hue/1.0 UPnP/1.0 IpBridge/1.53.0
+hue-bridgeid: ECB5FAFFFE8C037A
+ST: upnp:rootdevice
+USN: uuid:2f402f80-da50-11e1-9b23-ecb5fa8c037a::upnp:rootdevice
+
+2022-11-21 18:18:54.225217 INFO : minhttp.log_test: Address: 10.100.132.216
+2022-11-21 18:18:54.225370 INFO : minhttp.log_test: Port: 1900
+2022-11-21 18:18:54.275024 DEBUG: AsyncSocket: incomingDataEventHandler
+2022-11-21 18:18:54.275069 INFO : minhttp.log_test: Message: HTTP/1.1 200 OK
+HOST: 239.255.255.250:1900
+EXT:
+CACHE-CONTROL: max-age=100
+LOCATION: http://10.100.132.216:80/description.xml
+SERVER: Hue/1.0 UPnP/1.0 IpBridge/1.53.0
+hue-bridgeid: ECB5FAFFFE8C037A
+ST: uuid:2f402f80-da50-11e1-9b23-ecb5fa8c037a
+USN: uuid:2f402f80-da50-11e1-9b23-ecb5fa8c037a
+
+2022-11-21 18:18:54.275317 INFO : minhttp.log_test: Address: 10.100.132.216
+2022-11-21 18:18:54.275352 DEBUG: EventsLoop: pause an event source - event source: 0x326588, fd: 13
+2022-11-21 18:18:54.275485 INFO : minhttp.log_test: Port: 1900
+2022-11-21 18:18:54.275677 DEBUG: EventsLoop: resume an event source - event source: 0x326588, fd: 13
+2022-11-21 18:18:54.325810 DEBUG: AsyncSocket: incomingDataEventHandler
+2022-11-21 18:18:54.325864 INFO : minhttp.log_test: Message: HTTP/1.1 200 OK
+HOST: 239.255.255.250:1900
+EXT:
+CACHE-CONTROL: max-age=100
+LOCATION: http://10.100.132.216:80/description.xml
+SERVER: Hue/1.0 UPnP/1.0 IpBridge/1.53.0
+hue-bridgeid: ECB5FAFFFE8C037A
+ST: urn:schemas-upnp-org:device:basic:1
+USN: uuid:2f402f80-da50-11e1-9b23-ecb5fa8c037a
+
+2022-11-21 18:18:54.326109 INFO : minhttp.log_test: Address: 10.100.132.216
+2022-11-21 18:18:54.326131 DEBUG: EventsLoop: pause an event source - event source: 0x326588, fd: 13
+2022-11-21 18:18:54.326264 INFO : minhttp.log_test: Port: 1900
+2022-11-21 18:18:54.326443 DEBUG: EventsLoop: resume an event source - event source: 0x326588, fd: 13
+2022-11-21 18:18:55.228750 DEBUG: AsyncSocket: incomingDataEventHandler
+2022-11-21 18:18:55.228813 INFO : minhttp.log_test: Message: HTTP/1.1 200 OK
+HOST: 239.255.255.250:1900
+EXT:
+CACHE-CONTROL: max-age=100
+LOCATION: http://10.100.132.216:80/description.xml
+SERVER: Hue/1.0 UPnP/1.0 IpBridge/1.53.0
+hue-bridgeid: ECB5FAFFFE8C037A
+ST: upnp:rootdevice
+USN: uuid:2f402f80-da50-11e1-9b23-ecb5fa8c037a::upnp:rootdevice
+
+2022-11-21 18:18:55.229140 INFO : minhttp.log_test: Address: 10.100.132.216
+2022-11-21 18:18:55.229165 DEBUG: EventsLoop: pause an event source - event source: 0x326588, fd: 13
+2022-11-21 18:18:55.229322 INFO : minhttp.log_test: Port: 1900
+2022-11-21 18:18:55.229525 DEBUG: EventsLoop: resume an event source - event source: 0x326588, fd: 13
+2022-11-21 18:18:55.278114 INFO : minhttp.log_test: Message: HTTP/1.1 200 OK
+HOST: 239.255.255.250:1900
+EXT:
+CACHE-CONTROL: max-age=100
+LOCATION: http://10.100.132.216:80/description.xml
+SERVER: Hue/1.0 UPnP/1.0 IpBridge/1.53.0
+hue-bridgeid: ECB5FAFFFE8C037A
+ST: uuid:2f402f80-da50-11e1-9b23-ecb5fa8c037a
+USN: uuid:2f402f80-da50-11e1-9b23-ecb5fa8c037a
+
+2022-11-21 18:18:55.278348 INFO : minhttp.log_test: Address: 10.100.132.216
+2022-11-21 18:18:55.278488 INFO : minhttp.log_test: Port: 1900
+2022-11-21 18:18:55.328446 DEBUG: AsyncSocket: incomingDataEventHandler
+2022-11-21 18:18:55.328499 INFO : minhttp.log_test: Message: HTTP/1.1 200 OK
+HOST: 239.255.255.250:1900
+EXT:
+CACHE-CONTROL: max-age=100
+LOCATION: http://10.100.132.216:80/description.xml
+SERVER: Hue/1.0 UPnP/1.0 IpBridge/1.53.0
+hue-bridgeid: ECB5FAFFFE8C037A
+ST: urn:schemas-upnp-org:device:basic:1
+USN: uuid:2f402f80-da50-11e1-9b23-ecb5fa8c037a
+
+2022-11-21 18:18:55.328715 INFO : minhttp.log_test: Address: 10.100.132.216
+2022-11-21 18:18:55.328739 DEBUG: EventsLoop: pause an event source - event source: 0x326588, fd: 13
+2022-11-21 18:18:55.328878 INFO : minhttp.log_test: Port: 1900
+2022-11-21 18:18:55.329067 DEBUG: EventsLoop: resume an event source - event source: 0x326588, fd: 13
+2022-11-21 18:19:02.000076 INFO : minhttp.log_test: **************Summary **********************
+2022-11-21 18:19:02.000393 INFO : minhttp.log_test: totalPacketsReceived= 7
+2022-11-21 18:19:02.000545 INFO : minhttp.log_test: Sonos Discovery Plugin has been Ended Configuring SucceSSfullY
+2022-11-21 18:19:02.000675 INFO : minhttp.log_test: Sonos Discovery Plugin has been Ended Configuring SucceSSfullY
+2022-11-21 18:19:02.000798 INFO : minhttp.log_test: Sonos Discovery Plugin has been Ended Configuring SucceSSfullY
+2022-11-21 18:19:02.001459 INFO : LuaAddon: a script: HUB:minhttp.log_test/scripts/configure has been executed successfully
