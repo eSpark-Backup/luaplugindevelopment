@@ -69,7 +69,25 @@ class MyListener(ServiceListener):
                     if str(key) =="b'Firmware Version'":
                         print(key, value)
 
+			
+			
+ ###############################  for PHILIPS HUE Devices   ###############################################
 
+        elif type_== "_hue._tcp.local":
+            if info:
+                print ("********PHILIPS device Detected********")
+                print("Device Name: %s "% (info.name))
+                print(info._ipv4_addresses)
+
+                for key, value in info.properties.items():
+                    if str(key).startswith("b'model'"):
+                        print(key, value)
+
+                for key, value in info.properties.items():
+                    if str(key) =="b'Firmware Version'":
+                        print(key, value)			
+			
+							
 ###############################  for Devices   ###############################################
 
         elif type_== "device._tcp.local":    
