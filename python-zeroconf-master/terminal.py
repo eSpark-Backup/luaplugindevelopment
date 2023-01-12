@@ -13,6 +13,6 @@ wid = termf.winfo_id()
 #os.system('xterm -into %d -geometry 400x400 -sb &' % wid)
 
 termf['font'] = myFont
-os.system('xterm -into %d -geometry 900x1400 -e python3 mdns.py &' % wid )
+os.system('xterm -into %d -geometry 900x1400 -e python3 mdns_filtered.py &' % wid )
 
 root.mainloop()
