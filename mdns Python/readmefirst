@@ -1,0 +1,44 @@
+
+*********INSTRUCTIONS:**********
+
+There are 2 Main Files (mdns.py & terminal.py)
+
+** mdns.py contains code that discovers and filter devices.
+** terminal.py contains GUI code only. It will execute mdns.py as well. 
+
+
+
+**********HOW TO USE:***********
+
+1. First Install Python3 (Ubuntu)
+	A.  Commands to install python (Ubuntu Terminal):
+	 	a. sudo apt update
+	 	b. sudo apt install software-properties-common
+	 	c. sudo add-apt-repository ppa:deadsnakes/ppa
+	 	d. sudo apt update
+	 	e. sudo apt install python3.10
+	 	f. sudo apt install -y python3-pip
+	 	g. sudo apt install -y build-essential libssl-dev libffi-dev python3-dev
+		
+		For Reference, please visit these links:
+		a. 	https://phoenixnap.com/kb/how-to-install-python-3-ubuntu
+		b. 	https://www.digitalocean.com/community/tutorials/how-to-install-python-3-and-set-up-a-programming-environment-on-an-ubuntu-20-04-server
+	
+	B. For "Windows". Use This Links to Download and Install Python3:
+		https://www.python.org/downloads/windows/
+		
+Open Terminal and install Python Libraries below:	
+	
+2. Install ZeroConf Library using command:
+	pip install zeroconf
+	
+3. Install GUI tkinter Library using command:
+	pip install tk
+	
+4. Go to the Project Folder. Open terminal and execute terminal.py using command:
+	python3 terminal.py
+	
+
+	
+	
+** NOTE: These scripts have successfully tested in Ubuntu22.04 and Windows 10
