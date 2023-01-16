@@ -1,0 +1,5 @@
+# using JS and NODE outputs the results in JSON format
+
+Includes filtration of required devices
+Only displays HostName and IP address as client requirement to outputfile > mDNSDevices.json
+Also logs data to file mDNSfile.log
