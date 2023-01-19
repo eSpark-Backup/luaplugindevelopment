@@ -5,80 +5,51 @@ const fs = require('fs');
 let mapDevices = new Map();
 
 
+const readline = require("readline");
 
+//Specific function for Shelly Device
+function queryAnswersShelly(checkQueryResponseAnswers) {
 
-//Specific function for smartthing Device
-function queryAnswerssmartthing(checkQueryResponseAnswers) {
+  //'{"id":0,"type":"response","flags":1152,"flag_qr":true,"opcode":"QUERY",AA:BB:CC:DD:EE:FF ,FE80:0000:0000:0000:0202:B3FF:FE1E:8329,"flag_aa":true,"flag_tc":false,"flag_rd":false,"flag_ra":true,"flag_z":false,"flag_ad":false,"flag_cd":false,"rcode":"NOERROR","questions":[],"answers":[{"name":"_services._dns-sd._udp.local","type":"PTR","ttl":4500,"class":"IN","flush":false,"data":"_http._tcp.local"},{"name":"_http._tcp.local","type":"PTR","ttl":4500,"class":"IN","flush":false,"data":"shelly1-8CAAB56E1209._http._tcp.local"},{"name":"shelly1-8CAAB56E1209._http._tcp.local","type":"SRV","ttl":120,"class":"IN","flush":true,"data":{"priority":0,"weight":0,"port":80,"target":"shelly1-8CAAB56E1209.local"}},{"name":"shelly1-8CAAB56E1209._http._tcp.local","type":"TXT","ttl":120,"class":"IN","flush":true,"data":[{"type":"Buffer","data":[105,100,61,115,104,101,108,108,121,49,45,56,67,65,65,66,53,54,69,49,50,48,57]},{"type":"Buffer","data":[97,114,99,104,61,101,115,112,56,50,54,54]},{"type":"Buffer","data":[97,112,112,61,115,119,105,116,99,104,49]},{"type":"Buffer","data":[102,119,95,118,101,114,115,105,111,110,61,49,46,48]},{"type":"Buffer","data":[102,119,95,105,100,61,50,48,50,50,49,48,50,55,45,48,57,49,52,50,55,47,118,49,46,49,50,46,49,45,103,97,57,49,49,55,100,51]},{"type":"Buffer","data":[100,105,115,99,111,118,101,114,97,98,108,101,61,102,97,108,115,101]}]},{"name":"shelly1-8CAAB56E1209.local","type":"A","ttl":120,"class":"IN","flush":true,"data":"10.100.132.58"},{"name":"shelly1-8CAAB56E1209.local","type":"NSEC","ttl":120,"class":"IN","flush":true,"data":{"nextDomain":"shelly1-8CAAB56E1209.local","rrtypes":["A"]}}],"authorities":[],"additionals":[]}'
+  let responseJsonStr = JSON.stringify(checkQueryResponseAnswers);
 
-  var cntr = 0
-  //console.log('**********************IN queryAnswerssmartthing**********************')
-  //Only smartthing device will be filtered that data found in Answers packet of response
+  var srchResponse = responseJsonStr.toLocaleLowerCase()
 
+  //Only Shelly device will be filtered that data found in Answers packet of response
+  if (srchResponse.includes('shelly')) {
 
-    //parse all the records in response including "type":"PTR","TXT","SRV","AAAA",NSEC and all in this response
-    while (true) {
+    //  shelly1-8CAAB56E1209
+    try { mDNSdevicesObjectWEBUI.deviceName = mDNSLocalModules.validateDeviceNameSmartThing(srchResponse);} catch (e) { }
+    try { mDNSdevicesObjectWEBUI.deviceModel = mDNSdevicesObjectWEBUI.deviceName.substring(mDNSdevicesObjectWEBUI.deviceName.indexOf('-') + 1); } catch (e) { mDNSdevicesObjectWEBUI.deviceModel = ''; }
+    try { mDNSdevicesObjectWEBUI.deviceIP4 = mDNSLocalModules.validateIPv4(responseJsonStr) } catch (e) { }
+    try { mDNSdevicesObjectWEBUI.deviceMac = mDNSLocalModules.validateMacAddress(responseJsonStr) } catch (e) { }
+    try { mDNSdevicesObjectWEBUI.deviceIP6 = mDNSLocalModules.validateIPv6(responseJsonStr) } catch (e) { }
 
-  //For smartthing Record type must be "A" and name "smartthing" exist
-    if (checkQueryResponseAnswers.answers[cntr].type=='A' && checkQueryResponseAnswers.answers[cntr].name.toLocaleLowerCase().includes('smartthing')) {
-      
-      
-    //display the name at UI
-    try { console.log('********************************************' + checkQueryResponseAnswers.answers[cntr].name + ' Device Found********************************************') } catch (e) { console.log('********************************************New Device Found********************************************') }
+    //Dictionary mustnot have the same Attribute already
+    if (!mapDevices.has(mDNSdevicesObjectWEBUI.deviceName)) {
+
+      //Save the dictionary
+      mapDevices.set(mDNSdevicesObjectWEBUI.deviceName, mDNSdevicesObjectWEBUI.deviceIP4)//map.forEach (myFunction);
+
+      //Save the JSON 
+      fs.appendFile('mDNSDevices.json', JSON.stringify(mDNSdevicesObjectWEBUI) + "\r\n", err => {
+        if (err) { console.error(err); }
+      });
+
+    }//if device is already added then return without saving
+    else {
+      return
+    }
 
     //record the packet in file
-    fs.appendFile('mDNSfile.log', mDNSLocalModules.formatDate(new Date()) + '********************************************New Device Found********************************************' + '\n\r', err => {
+    fs.appendFile('mDNSfile.log', mDNSLocalModules.formatDate(new Date()) + '********************************************' + mDNSdevicesObjectWEBUI.deviceName + ' Device Found********************************************' + '\n\r', err => {
       if (err) { console.error(err); }
     });
-      
-      mDNSdevicesObject.deviceName = checkQueryResponseAnswers.answers[cntr].name;
-      mDNSdevicesObject.deviceType = checkQueryResponseAnswers.answers[cntr].type;
-      mDNSdevicesObject.deviceIP4 = ""
-      mDNSdevicesObjectWEBUI.deviceModel=""
 
-      //check if IPv4 Exist and is Proper IPv4 address
-      if (mDNSLocalModules.validateIPv4(checkQueryResponseAnswers.answers[cntr].data)) {
-            mDNSdevicesObject.deviceIP4 = checkQueryResponseAnswers.answers[cntr].data;
-      }
-
-      //save data for smartthing device in json object
-      mDNSdevicesObject.deviceData = checkQueryResponseAnswers.answers[cntr].ttl;
-
-      //if data found store in JSON format
-      if (mDNSdevicesObject.deviceIP4.length > 1) {
-
-        mDNSdevicesObjectWEBUI.deviceName = mDNSdevicesObject.deviceName
-        
-        
-        //smartthing1-8CAAB56E1209
-        try{mDNSdevicesObjectWEBUI.deviceModel = mDNSdevicesObject.deviceName.substring(mDNSdevicesObject.deviceName.indexOf('-')+1);}catch(e){mDNSdevicesObjectWEBUI.deviceModel = mDNSdevicesObject.deviceName;}
-
-        mDNSdevicesObjectWEBUI.deviceIP4 = mDNSdevicesObject.deviceIP4
-
-        //Dictionary mustnot have the same Attribute already
-        if (!mapDevices.has(mDNSdevicesObject.deviceName)) {
-          console.log('********************************************1111111111111111111111111111111111111111111111111111111111111********************************************************', mDNSdevicesObjectWEBUI);
-
-          //Save the dictionary
-          mapDevices.set(mDNSdevicesObject.deviceName, mDNSdevicesObject.deviceIP4)//map.forEach (myFunction);
-
-          //Save the JSON 
-          fs.appendFile('mDNSDevices.json', JSON.stringify(mDNSdevicesObjectWEBUI) + "\r\n", err => {
-            if (err) { console.error(err); }
-          });
-
-        }
-      }
-    }
-    
-    cntr = cntr + 1 //increment to check other Record Type
-    
-    //return if all the array parsed
-    if(checkQueryResponseAnswers.answers[cntr] == undefined)//|| checkQueryResponseAnswers.answers[cntr] == 'undefined' 
-        break;
+    //display the name at UI
+    try { console.log('********************************************' + mDNSdevicesObjectWEBUI.deviceName + ' Device Found********************************************') } catch (e) { console.log('********************************************New Device Found********************************************') }
 
   }
-  
-
 }
 
 //*****************************Default methods for mdns discovery************************ */
@@ -86,19 +57,19 @@ function queryAnswerssmartthing(checkQueryResponseAnswers) {
 //default method for mdns
 //main method that runs when response received
 mdns.on('response', function (response) {
-  
+
   //log every response in mDNSfile.log file
   fs.appendFile('mDNSfile.log', mDNSLocalModules.formatDate(new Date()) + JSON.stringify(response) + '\n\r', err => {
     if (err) { console.error(err); }
   });
 
-  // smartthing device found on Answers array from response
-  //{"id":0,"type":"response","flags":1152,"flag_qr":true,"opcode":"QUERY","flag_aa":true,"flag_tc":false,"flag_rd":false,"flag_ra":true,"flag_z":false,"flag_ad":false,"flag_cd":false,"rcode":"NOERROR","questions":[],"answers":[{"name":"_services._dns-sd._udp.local","type":"PTR","ttl":4500,"class":"IN","flush":false,"data":"_http._tcp.local"},{"name":"_http._tcp.local","type":"PTR","ttl":4500,"class":"IN","flush":false,"data":"smartthing1-8CAAB56E1209._http._tcp.local"},{"name":"smartthing1-8CAAB56E1209._http._tcp.local","type":"SRV","ttl":120,"class":"IN","flush":true,"data":{"priority":0,"weight":0,"port":80,"target":"smartthing1-8CAAB56E1209.local"}},{"name":"smartthing1-8CAAB56E1209._http._tcp.local","type":"TXT","ttl":120,"class":"IN","flush":true,"data":[{"type":"Buffer","data":[105,100,61,115,104,101,108,108,121,49,45,56,67,65,65,66,53,54,69,49,50,48,57]},{"type":"Buffer","data":[97,114,99,104,61,101,115,112,56,50,54,54]},{"type":"Buffer","data":[97,112,112,61,115,119,105,116,99,104,49]},{"type":"Buffer","data":[102,119,95,118,101,114,115,105,111,110,61,49,46,48]},{"type":"Buffer","data":[102,119,95,105,100,61,50,48,50,50,49,48,50,55,45,48,57,49,52,50,55,47,118,49,46,49,50,46,49,45,103,97,57,49,49,55,100,51]},{"type":"Buffer","data":[100,105,115,99,111,118,101,114,97,98,108,101,61,102,97,108,115,101]}]},{"name":"smartthing1-8CAAB56E1209.local","type":"A","ttl":120,"class":"IN","flush":true,"data":"10.100.132.58"},{"name":"smartthing1-8CAAB56E1209.local","type":"NSEC","ttl":120,"class":"IN","flush":true,"data":{"nextDomain":"smartthing1-8CAAB56E1209.local","rrtypes":["A"]}}],"authorities":[],"additionals":[]}
-  // "name":"smartthing1-8CAAB56E1209.local", "type":"A", "ttl":120,  "class":"IN", "flush":true, "data":"10.100.132.58"
+  // Shelly device found on Answers array from response
+  //{"id":0,"type":"response","flags":1152,"flag_qr":true,"opcode":"QUERY","flag_aa":true,"flag_tc":false,"flag_rd":false,"flag_ra":true,"flag_z":false,"flag_ad":false,"flag_cd":false,"rcode":"NOERROR","questions":[],"answers":[{"name":"_services._dns-sd._udp.local","type":"PTR","ttl":4500,"class":"IN","flush":false,"data":"_http._tcp.local"},{"name":"_http._tcp.local","type":"PTR","ttl":4500,"class":"IN","flush":false,"data":"shelly1-8CAAB56E1209._http._tcp.local"},{"name":"shelly1-8CAAB56E1209._http._tcp.local","type":"SRV","ttl":120,"class":"IN","flush":true,"data":{"priority":0,"weight":0,"port":80,"target":"shelly1-8CAAB56E1209.local"}},{"name":"shelly1-8CAAB56E1209._http._tcp.local","type":"TXT","ttl":120,"class":"IN","flush":true,"data":[{"type":"Buffer","data":[105,100,61,115,104,101,108,108,121,49,45,56,67,65,65,66,53,54,69,49,50,48,57]},{"type":"Buffer","data":[97,114,99,104,61,101,115,112,56,50,54,54]},{"type":"Buffer","data":[97,112,112,61,115,119,105,116,99,104,49]},{"type":"Buffer","data":[102,119,95,118,101,114,115,105,111,110,61,49,46,48]},{"type":"Buffer","data":[102,119,95,105,100,61,50,48,50,50,49,48,50,55,45,48,57,49,52,50,55,47,118,49,46,49,50,46,49,45,103,97,57,49,49,55,100,51]},{"type":"Buffer","data":[100,105,115,99,111,118,101,114,97,98,108,101,61,102,97,108,115,101]}]},{"name":"shelly1-8CAAB56E1209.local","type":"A","ttl":120,"class":"IN","flush":true,"data":"10.100.132.58"},{"name":"shelly1-8CAAB56E1209.local","type":"NSEC","ttl":120,"class":"IN","flush":true,"data":{"nextDomain":"shelly1-8CAAB56E1209.local","rrtypes":["A"]}}],"authorities":[],"additionals":[]}
+  // "name":"shelly1-8CAAB56E1209.local", "type":"A", "ttl":120,  "class":"IN", "flush":true, "data":"10.100.132.58"
 
   try {
     if (response.answers !== undefined && response.answers[0] != 'undefined') // response must not be empty and some data must exist
-      queryAnswerssmartthing(response);
+      queryAnswersShelly(response);
   } catch (e) {//console.log('**********************IN catch111111**********************',e)
   }
 
@@ -106,19 +77,16 @@ mdns.on('response', function (response) {
 
 
 //default method for mdns
-mdns.on('warning', function (err) {  console.log(err.stack)})
+mdns.on('warning', function (err) { console.log(err.stack) })
 
 //json mdns object
-let mDNSdevicesObject = {    deviceName: "value",    deviceType: " ",    deviceIP4: " ",    deviceData: " "  };
-  
-  //json mdns object
-let mDNSdevicesObjectWEBUI = {    deviceName: "value",    deviceIP4: " " , deviceModel:" " };
+let mDNSdevicesObjectWEBUI = { deviceName: "value", deviceIP4: " ", deviceIP6: " ", deviceMac: " ", deviceModel: " " };
 
 //mdns method for query
 mdns.on('query', function (query) {
 
   query.questions.forEach(function (q) {
-    //console.log(q)
+    console.log(q)
     if (q.type === 'A' && q.name === '_http._tcp.local') {
       // send an A-record response for example.local
       mdns.respond({
