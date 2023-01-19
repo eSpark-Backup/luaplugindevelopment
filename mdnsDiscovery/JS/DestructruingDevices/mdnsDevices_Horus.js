@@ -4,9 +4,6 @@ let mDNSLocalModules = require("./mDNSLocalModules.js")
 const fs = require('fs');
 let mapDevices = new Map();
 
-
-const readline = require("readline");
-
 //Specific function for Shelly Device
 function queryAnswersShelly(checkQueryResponseAnswers) {
 
@@ -16,7 +13,7 @@ function queryAnswersShelly(checkQueryResponseAnswers) {
   var srchResponse = responseJsonStr.toLocaleLowerCase()
 
   //Only Shelly device will be filtered that data found in Answers packet of response
-  if (srchResponse.includes('shelly')) {
+  if (srchResponse.includes('horus')) {
 
     //  shelly1-8CAAB56E1209
     try { mDNSdevicesObjectWEBUI.deviceName = mDNSLocalModules.validateDeviceNameHorus(srchResponse);} catch (e) { }

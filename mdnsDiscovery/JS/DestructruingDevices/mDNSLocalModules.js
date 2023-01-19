@@ -173,6 +173,110 @@ function validateDeviceNameEzlo(devnameData) {
 }
 
 
+
+//**********************************************  HONEYWELL  ********************************************************* */
+
+//validate the DeviceName
+function validateDeviceNameHoneywell(devnameData) {
+  try{
+  const regexp = /honeywell[\s*\d*\.A_Za-z0-9\(\)\_]*/i
+  const matches = devnameData.match(regexp)
+
+  return Array.from(matches)
+
+}catch(e){return ' '
+}
+
+}
+
+
+
+//**********************************************  DAIKIN  ********************************************************* */
+
+//validate the DeviceName
+function validateDeviceNameDaikin(devnameData) {
+  try{
+    const regexp = /daikin[\s*\d*\.A_Za-z0-9\(\)\_]*/i
+  const matches = devnameData.match(regexp)
+
+  return Array.from(matches)
+
+}catch(e){return ' '
+}
+
+}
+
+
+
+//**********************************************  SENSIBO  ********************************************************* */
+
+//validate the DeviceName
+function validateDeviceNameSensibo(devnameData) {
+  try{
+    const regexp = /sensibo[\s*\d*\.A_Za-z0-9\(\)\_]*/i
+  const matches = devnameData.match(regexp)
+
+  return Array.from(matches)
+
+}catch(e){return ' '
+}
+
+}
+
+
+
+
+//**********************************************  ECOBEE  ********************************************************* */
+
+//validate the DeviceName
+function validateDeviceNameEcobee(devnameData) {
+  try{
+    const regexp = /ecobee[\s*\d*\.A_Za-z0-9\(\)\_]*/i
+  const matches = devnameData.match(regexp)
+
+  return Array.from(matches)
+
+}catch(e){return ' '
+}
+
+}
+
+
+
+
+//**********************************************  NEST  ********************************************************* */
+
+//validate the DeviceName
+function validateDeviceNameGoogle(devnameData) {
+  try{
+  const regexp = /nest[\s*\d*\.A_Za-z0-9\(\)\_]*/i
+  const matches = devnameData.match(regexp)
+
+  return Array.from(matches)
+
+}catch(e){return ' '
+}
+
+}
+
+
+
+
+//**********************************************  dsc  ********************************************************* */
+
+//validate the DeviceName
+function validateDeviceNameDCS(devnameData) {
+  try{
+  const regexp = /dsc[\s*\d*\.A_Za-z0-9\(\)\_]*/i
+  const matches = devnameData.match(regexp)
+
+  return Array.from(matches)
+
+}catch(e){return ' '
+}
+
+}
+
 //^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$
 //validate the MacAddress
 function validateMacAddress(macData) {
@@ -211,6 +315,11 @@ module.exports={
     validateDeviceNameHorus,
     validateDeviceNameHikVision,
     validateDeviceNameGoogleMini,
-    validateDeviceNameEzlo,
-
+    validateDeviceNameEzlo, 
+    validateDeviceNameHoneywell,
+    validateDeviceNameDaikin,
+    validateDeviceNameEcobee,
+    validateDeviceNameSensibo,
+    validateDeviceNameGoogle,
+    validateDeviceNameDCS
 };

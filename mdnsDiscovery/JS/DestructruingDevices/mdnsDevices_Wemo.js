@@ -4,9 +4,6 @@ let mDNSLocalModules = require("./mDNSLocalModules.js")
 const fs = require('fs');
 let mapDevices = new Map();
 
-
-const readline = require("readline");
-
 //Specific function for Shelly Device
 function queryAnswersShelly(checkQueryResponseAnswers) {
 
