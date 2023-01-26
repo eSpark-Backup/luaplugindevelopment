@@ -4,20 +4,19 @@ let mDNSLocalModules = require("./mDNSLocalModules.js")
 const fs = require('fs');
 let mapDevices = new Map();
 
-//Specific function for Shelly Device
-function queryAnswersShelly(checkQueryResponseAnswers) {
+//Specific function for Wemo Device
+function queryAnswersWemo(checkQueryResponseAnswers) {
 
-  //'{"id":0,"type":"response","flags":1152,"flag_qr":true,"opcode":"QUERY",AA:BB:CC:DD:EE:FF ,FE80:0000:0000:0000:0202:B3FF:FE1E:8329,"flag_aa":true,"flag_tc":false,"flag_rd":false,"flag_ra":true,"flag_z":false,"flag_ad":false,"flag_cd":false,"rcode":"NOERROR","questions":[],"answers":[{"name":"_services._dns-sd._udp.local","type":"PTR","ttl":4500,"class":"IN","flush":false,"data":"_http._tcp.local"},{"name":"_http._tcp.local","type":"PTR","ttl":4500,"class":"IN","flush":false,"data":"shelly1-8CAAB56E1209._http._tcp.local"},{"name":"shelly1-8CAAB56E1209._http._tcp.local","type":"SRV","ttl":120,"class":"IN","flush":true,"data":{"priority":0,"weight":0,"port":80,"target":"shelly1-8CAAB56E1209.local"}},{"name":"shelly1-8CAAB56E1209._http._tcp.local","type":"TXT","ttl":120,"class":"IN","flush":true,"data":[{"type":"Buffer","data":[105,100,61,115,104,101,108,108,121,49,45,56,67,65,65,66,53,54,69,49,50,48,57]},{"type":"Buffer","data":[97,114,99,104,61,101,115,112,56,50,54,54]},{"type":"Buffer","data":[97,112,112,61,115,119,105,116,99,104,49]},{"type":"Buffer","data":[102,119,95,118,101,114,115,105,111,110,61,49,46,48]},{"type":"Buffer","data":[102,119,95,105,100,61,50,48,50,50,49,48,50,55,45,48,57,49,52,50,55,47,118,49,46,49,50,46,49,45,103,97,57,49,49,55,100,51]},{"type":"Buffer","data":[100,105,115,99,111,118,101,114,97,98,108,101,61,102,97,108,115,101]}]},{"name":"shelly1-8CAAB56E1209.local","type":"A","ttl":120,"class":"IN","flush":true,"data":"10.100.132.58"},{"name":"shelly1-8CAAB56E1209.local","type":"NSEC","ttl":120,"class":"IN","flush":true,"data":{"nextDomain":"shelly1-8CAAB56E1209.local","rrtypes":["A"]}}],"authorities":[],"additionals":[]}'
   let responseJsonStr = JSON.stringify(checkQueryResponseAnswers);
 
   var srchResponse = responseJsonStr.toLocaleLowerCase()
 
-  //Only Shelly device will be filtered that data found in Answers packet of response
+  //Only Wemo device will be filtered that data found in Answers packet of response
   if (srchResponse.includes('wemo')) {
 
-    //  shelly1-8CAAB56E1209
+    //  Wemo Dim2G 259._hap._tcp.local
     try { mDNSdevicesObjectWEBUI.deviceName = mDNSLocalModules.validateDeviceNameWemo(srchResponse);} catch (e) { }
-    try { mDNSdevicesObjectWEBUI.deviceModel = mDNSdevicesObjectWEBUI.deviceName.substring(mDNSdevicesObjectWEBUI.deviceName.indexOf('-') + 1); } catch (e) { mDNSdevicesObjectWEBUI.deviceModel = ''; }
+    try { mDNSdevicesObjectWEBUI.deviceModel = mDNSdevicesObjectWEBUI.deviceName;} catch (e) { mDNSdevicesObjectWEBUI.deviceModel = ''; }
     try { mDNSdevicesObjectWEBUI.deviceIP4 = mDNSLocalModules.validateIPv4(responseJsonStr) } catch (e) { }
     try { mDNSdevicesObjectWEBUI.deviceMac = mDNSLocalModules.validateMacAddress(responseJsonStr) } catch (e) { }
     try { mDNSdevicesObjectWEBUI.deviceIP6 = mDNSLocalModules.validateIPv6(responseJsonStr) } catch (e) { }
@@ -39,12 +38,12 @@ function queryAnswersShelly(checkQueryResponseAnswers) {
     }
 
     //record the packet in file
-    fs.appendFile('mDNSfile.log', mDNSLocalModules.formatDate(new Date()) + '********************************************' + mDNSdevicesObjectWEBUI.deviceName + ' Device Found********************************************' + '\n\r', err => {
+    fs.appendFile('mDNSfile.log', mDNSLocalModules.formatDate(new Date()) + validateCommentizeLogs(mDNSdevicesObjectWEBUI.deviceName) + '\n\r', err => {
       if (err) { console.error(err); }
     });
 
     //display the name at UI
-    try { console.log('********************************************' + mDNSdevicesObjectWEBUI.deviceName + ' Device Found********************************************') } catch (e) { console.log('********************************************New Device Found********************************************') }
+    try { console.log(validateCommentizeLogs(mDNSdevicesObjectWEBUI.deviceName)) } catch (e) { validateCommentizeLogs('New') }
 
   }
 }
@@ -60,15 +59,13 @@ mdns.on('response', function (response) {
     if (err) { console.error(err); }
   });
 
-  // Shelly device found on Answers array from response
-  //{"id":0,"type":"response","flags":1152,"flag_qr":true,"opcode":"QUERY","flag_aa":true,"flag_tc":false,"flag_rd":false,"flag_ra":true,"flag_z":false,"flag_ad":false,"flag_cd":false,"rcode":"NOERROR","questions":[],"answers":[{"name":"_services._dns-sd._udp.local","type":"PTR","ttl":4500,"class":"IN","flush":false,"data":"_http._tcp.local"},{"name":"_http._tcp.local","type":"PTR","ttl":4500,"class":"IN","flush":false,"data":"shelly1-8CAAB56E1209._http._tcp.local"},{"name":"shelly1-8CAAB56E1209._http._tcp.local","type":"SRV","ttl":120,"class":"IN","flush":true,"data":{"priority":0,"weight":0,"port":80,"target":"shelly1-8CAAB56E1209.local"}},{"name":"shelly1-8CAAB56E1209._http._tcp.local","type":"TXT","ttl":120,"class":"IN","flush":true,"data":[{"type":"Buffer","data":[105,100,61,115,104,101,108,108,121,49,45,56,67,65,65,66,53,54,69,49,50,48,57]},{"type":"Buffer","data":[97,114,99,104,61,101,115,112,56,50,54,54]},{"type":"Buffer","data":[97,112,112,61,115,119,105,116,99,104,49]},{"type":"Buffer","data":[102,119,95,118,101,114,115,105,111,110,61,49,46,48]},{"type":"Buffer","data":[102,119,95,105,100,61,50,48,50,50,49,48,50,55,45,48,57,49,52,50,55,47,118,49,46,49,50,46,49,45,103,97,57,49,49,55,100,51]},{"type":"Buffer","data":[100,105,115,99,111,118,101,114,97,98,108,101,61,102,97,108,115,101]}]},{"name":"shelly1-8CAAB56E1209.local","type":"A","ttl":120,"class":"IN","flush":true,"data":"10.100.132.58"},{"name":"shelly1-8CAAB56E1209.local","type":"NSEC","ttl":120,"class":"IN","flush":true,"data":{"nextDomain":"shelly1-8CAAB56E1209.local","rrtypes":["A"]}}],"authorities":[],"additionals":[]}
-  // "name":"shelly1-8CAAB56E1209.local", "type":"A", "ttl":120,  "class":"IN", "flush":true, "data":"10.100.132.58"
-
+  // Wemo device found on Answers array from response
+  //{"id":0,"type":"response","flags":1024,"flag_qr":true,"opcode":"QUERY","flag_aa":true,"flag_tc":false,"flag_rd":false,"flag_ra":false,"flag_z":false,"flag_ad":false,"flag_cd":false,"rcode":"NOERROR","questions":[],"answers":[{"name":"Wemo Dim2G 259._hap._tcp.local","type":"TXT","ttl":4500,"class":"IN","flush":true,"data":[{"type":"Buffer","data":[99,35,61,49]},{"type":"Buffer","data":[102,102,61,50]},{"type":"Buffer","data":[105,100,61,66,56,58,50,68,58,65,54,58,48,70,58,50,51,58,66,67]},{"type":"Buffer","data":[109,100,61,68,105,109,109,101,114]},{"type":"Buffer","data":[112,118,61,49,46,49]},{"type":"Buffer","data":[115,35,61,49]},{"type":"Buffer","data":[115,102,61,49]},{"type":"Buffer","data":[99,105,61,53]},{"type":"Buffer","data":[115,104,61,65,77,99,74,115,81,61,61]}]},{"name":"_hap._tcp.local","type":"PTR","ttl":4500,"class":"IN","flush":false,"data":"Wemo Dim2G 259._hap._tcp.local"}],"authorities":[],"additionals":[{"name":"Wemo Dim2G 259.local","type":"A","ttl":120,"class":"IN","flush":true,"data":"10.100.132.61"},{"name":"Wemo Dim2G 259.local","type":"AAAA","ttl":120,"class":"IN","flush":true,"data":"fe80::ea9f:80ff:fece:f630"},{"name":"Wemo Dim2G 259._hap._tcp.local","type":"SRV","ttl":120,"class":"IN","flush":true,"data":{"priority":0,"weight":0,"port":63319,"target":"Wemo Dim2G 259.local"}},{"name":"Wemo Dim2G 259.local","type":"NSEC","ttl":120,"class":"IN","flush":true,"data":{"nextDomain":"Wemo Dim2G 259.local","rrtypes":["A","AAAA"]}},{"name":"Wemo Dim2G 259._hap._tcp.local","type":"NSEC","ttl":120,"class":"IN","flush":true,"data":{"nextDomain":"Wemo Dim2G 259._hap._tcp.local","rrtypes":["TXT","SRV"]}}]}
+  // Wemo Dim2G 259._hap._tcp.local
   try {
     if (response.answers !== undefined && response.answers[0] != 'undefined') // response must not be empty and some data must exist
-      queryAnswersShelly(response);
-  } catch (e) {//console.log('**********************IN catch111111**********************',e)
-  }
+      queryAnswersWemo(response);
+  } catch (e) {  }
 
 })
 

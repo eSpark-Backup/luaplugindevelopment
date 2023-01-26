@@ -19,7 +19,7 @@ function queryAnswersEzlo(checkQueryResponseAnswers) {
     try { mDNSdevicesObjectWEBUI.deviceIP4 = mDNSLocalModules.validateIPv4(responseJsonStr) } catch (e) { }
     try { mDNSdevicesObjectWEBUI.deviceMac = mDNSLocalModules.validateMacAddress(responseJsonStr) } catch (e) { }
     try { mDNSdevicesObjectWEBUI.deviceIP6 = mDNSLocalModules.validateIPv6(responseJsonStr) } catch (e) { }
-console.log("********>>>>>>>>>>>>>>>>>>",mDNSdevicesObjectWEBUI)
+
     //Dictionary mustnot have the same Attribute already
     if (!mapDevices.has(mDNSdevicesObjectWEBUI.deviceName)) {
 
@@ -37,12 +37,12 @@ console.log("********>>>>>>>>>>>>>>>>>>",mDNSdevicesObjectWEBUI)
     }
 
     //record the packet in file
-    fs.appendFile('mDNSfile.log', mDNSLocalModules.formatDate(new Date()) + '********************************************' + mDNSdevicesObjectWEBUI.deviceName + ' Device Found********************************************' + '\n\r', err => {
+    fs.appendFile('mDNSfile.log', mDNSLocalModules.formatDate(new Date()) + validateCommentizeLogs(mDNSdevicesObjectWEBUI.deviceName) + '\n\r', err => {
       if (err) { console.error(err); }
     });
 
     //display the name at UI
-    try { console.log('********************************************' + mDNSdevicesObjectWEBUI.deviceName + ' Device Found********************************************') } catch (e) { console.log('********************************************New Device Found********************************************') }
+    try { console.log(validateCommentizeLogs(mDNSdevicesObjectWEBUI.deviceName)) } catch (e) { validateCommentizeLogs('New') }
 
   }
 }
@@ -65,8 +65,7 @@ mdns.on('response', function (response) {
   try {
     if (response.answers !== undefined && response.answers[0] != 'undefined') // response must not be empty and some data must exist
     queryAnswersEzlo(response);
-  } catch (e) {//console.log('**********************IN catch111111**********************',e)
-  }
+  } catch (e) {  }
 
 })
 

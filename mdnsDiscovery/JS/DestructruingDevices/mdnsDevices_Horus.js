@@ -39,12 +39,12 @@ function queryAnswersShelly(checkQueryResponseAnswers) {
     }
 
     //record the packet in file
-    fs.appendFile('mDNSfile.log', mDNSLocalModules.formatDate(new Date()) + '********************************************' + mDNSdevicesObjectWEBUI.deviceName + ' Device Found********************************************' + '\n\r', err => {
+    fs.appendFile('mDNSfile.log', mDNSLocalModules.formatDate(new Date()) + validateCommentizeLogs(mDNSdevicesObjectWEBUI.deviceName) + '\n\r', err => {
       if (err) { console.error(err); }
     });
 
     //display the name at UI
-    try { console.log('********************************************' + mDNSdevicesObjectWEBUI.deviceName + ' Device Found********************************************') } catch (e) { console.log('********************************************New Device Found********************************************') }
+    try { console.log(validateCommentizeLogs(mDNSdevicesObjectWEBUI.deviceName)) } catch (e) { validateCommentizeLogs('New') }
 
   }
 }
@@ -67,8 +67,7 @@ mdns.on('response', function (response) {
   try {
     if (response.answers !== undefined && response.answers[0] != 'undefined') // response must not be empty and some data must exist
       queryAnswersShelly(response);
-  } catch (e) {//console.log('**********************IN catch111111**********************',e)
-  }
+  } catch (e) {  }
 
 })
 

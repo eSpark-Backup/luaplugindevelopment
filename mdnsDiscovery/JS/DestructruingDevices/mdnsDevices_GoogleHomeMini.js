@@ -4,18 +4,18 @@ let mDNSLocalModules = require("./mDNSLocalModules.js")
 const fs = require('fs');
 let mapDevices = new Map();
 
-//Specific function for Shelly Device
-function queryAnswersShelly(checkQueryResponseAnswers) {
+//Specific function for GoogleHome Device
+function queryAnswersGoogleHome(checkQueryResponseAnswers) {
 
-  //'{"id":0,"type":"response","flags":1152,"flag_qr":true,"opcode":"QUERY",AA:BB:CC:DD:EE:FF ,FE80:0000:0000:0000:0202:B3FF:FE1E:8329,"flag_aa":true,"flag_tc":false,"flag_rd":false,"flag_ra":true,"flag_z":false,"flag_ad":false,"flag_cd":false,"rcode":"NOERROR","questions":[],"answers":[{"name":"_services._dns-sd._udp.local","type":"PTR","ttl":4500,"class":"IN","flush":false,"data":"_http._tcp.local"},{"name":"_http._tcp.local","type":"PTR","ttl":4500,"class":"IN","flush":false,"data":"shelly1-8CAAB56E1209._http._tcp.local"},{"name":"shelly1-8CAAB56E1209._http._tcp.local","type":"SRV","ttl":120,"class":"IN","flush":true,"data":{"priority":0,"weight":0,"port":80,"target":"shelly1-8CAAB56E1209.local"}},{"name":"shelly1-8CAAB56E1209._http._tcp.local","type":"TXT","ttl":120,"class":"IN","flush":true,"data":[{"type":"Buffer","data":[105,100,61,115,104,101,108,108,121,49,45,56,67,65,65,66,53,54,69,49,50,48,57]},{"type":"Buffer","data":[97,114,99,104,61,101,115,112,56,50,54,54]},{"type":"Buffer","data":[97,112,112,61,115,119,105,116,99,104,49]},{"type":"Buffer","data":[102,119,95,118,101,114,115,105,111,110,61,49,46,48]},{"type":"Buffer","data":[102,119,95,105,100,61,50,48,50,50,49,48,50,55,45,48,57,49,52,50,55,47,118,49,46,49,50,46,49,45,103,97,57,49,49,55,100,51]},{"type":"Buffer","data":[100,105,115,99,111,118,101,114,97,98,108,101,61,102,97,108,115,101]}]},{"name":"shelly1-8CAAB56E1209.local","type":"A","ttl":120,"class":"IN","flush":true,"data":"10.100.132.58"},{"name":"shelly1-8CAAB56E1209.local","type":"NSEC","ttl":120,"class":"IN","flush":true,"data":{"nextDomain":"shelly1-8CAAB56E1209.local","rrtypes":["A"]}}],"authorities":[],"additionals":[]}'
+  // _googlerpc._tcp zone
   let responseJsonStr = JSON.stringify(checkQueryResponseAnswers);
 
   var srchResponse = responseJsonStr.toLocaleLowerCase()
 
-  //Only Shelly device will be filtered that data found in Answers packet of response
+  //Only GoogleHome device will be filtered that data found in Answers packet of response
+
   if (srchResponse.includes('Google-Home-Mini')) {
 
-    //  shelly1-8CAAB56E1209
     try { mDNSdevicesObjectWEBUI.deviceName = mDNSLocalModules.validateDeviceNameGoogleMini(srchResponse);} catch (e) { }
     try { mDNSdevicesObjectWEBUI.deviceModel = mDNSdevicesObjectWEBUI.deviceName.substring(mDNSdevicesObjectWEBUI.deviceName.indexOf('-') + 1); } catch (e) { mDNSdevicesObjectWEBUI.deviceModel = ''; }
     try { mDNSdevicesObjectWEBUI.deviceIP4 = mDNSLocalModules.validateIPv4(responseJsonStr) } catch (e) { }
@@ -39,12 +39,12 @@ function queryAnswersShelly(checkQueryResponseAnswers) {
     }
 
     //record the packet in file
-    fs.appendFile('mDNSfile.log', mDNSLocalModules.formatDate(new Date()) + '********************************************' + mDNSdevicesObjectWEBUI.deviceName + ' Device Found********************************************' + '\n\r', err => {
+    fs.appendFile('mDNSfile.log', mDNSLocalModules.formatDate(new Date()) + validateCommentizeLogs(mDNSdevicesObjectWEBUI.deviceName) + '\n\r', err => {
       if (err) { console.error(err); }
     });
 
     //display the name at UI
-    try { console.log('********************************************' + mDNSdevicesObjectWEBUI.deviceName + ' Device Found********************************************') } catch (e) { console.log('********************************************New Device Found********************************************') }
+    try { console.log(validateCommentizeLogs(mDNSdevicesObjectWEBUI.deviceName)) } catch (e) { validateCommentizeLogs('New') }
 
   }
 }
@@ -60,15 +60,13 @@ mdns.on('response', function (response) {
     if (err) { console.error(err); }
   });
 
-  // Shelly device found on Answers array from response
-  //{"id":0,"type":"response","flags":1152,"flag_qr":true,"opcode":"QUERY","flag_aa":true,"flag_tc":false,"flag_rd":false,"flag_ra":true,"flag_z":false,"flag_ad":false,"flag_cd":false,"rcode":"NOERROR","questions":[],"answers":[{"name":"_services._dns-sd._udp.local","type":"PTR","ttl":4500,"class":"IN","flush":false,"data":"_http._tcp.local"},{"name":"_http._tcp.local","type":"PTR","ttl":4500,"class":"IN","flush":false,"data":"shelly1-8CAAB56E1209._http._tcp.local"},{"name":"shelly1-8CAAB56E1209._http._tcp.local","type":"SRV","ttl":120,"class":"IN","flush":true,"data":{"priority":0,"weight":0,"port":80,"target":"shelly1-8CAAB56E1209.local"}},{"name":"shelly1-8CAAB56E1209._http._tcp.local","type":"TXT","ttl":120,"class":"IN","flush":true,"data":[{"type":"Buffer","data":[105,100,61,115,104,101,108,108,121,49,45,56,67,65,65,66,53,54,69,49,50,48,57]},{"type":"Buffer","data":[97,114,99,104,61,101,115,112,56,50,54,54]},{"type":"Buffer","data":[97,112,112,61,115,119,105,116,99,104,49]},{"type":"Buffer","data":[102,119,95,118,101,114,115,105,111,110,61,49,46,48]},{"type":"Buffer","data":[102,119,95,105,100,61,50,48,50,50,49,48,50,55,45,48,57,49,52,50,55,47,118,49,46,49,50,46,49,45,103,97,57,49,49,55,100,51]},{"type":"Buffer","data":[100,105,115,99,111,118,101,114,97,98,108,101,61,102,97,108,115,101]}]},{"name":"shelly1-8CAAB56E1209.local","type":"A","ttl":120,"class":"IN","flush":true,"data":"10.100.132.58"},{"name":"shelly1-8CAAB56E1209.local","type":"NSEC","ttl":120,"class":"IN","flush":true,"data":{"nextDomain":"shelly1-8CAAB56E1209.local","rrtypes":["A"]}}],"authorities":[],"additionals":[]}
-  // "name":"shelly1-8CAAB56E1209.local", "type":"A", "ttl":120,  "class":"IN", "flush":true, "data":"10.100.132.58"
-
+  // GoogleHome device found on Answers array from response
+  //{"id":0,"type":"response","flags":1024,"flag_qr":true,"opcode":"QUERY","flag_aa":true,"flag_tc":false,"flag_rd":false,"flag_ra":false,"flag_z":false,"flag_ad":false,"flag_cd":false,"rcode":"NOERROR","questions":[],"answers":[{"name":"Google-Home-Mini-3c8bbcf90b85bf733ab898b6c08a21c5._googlecast._tcp.local","type":"TXT","ttl":4500,"class":"IN","flush":true,"data":[{"type":"Buffer","data":[105,100,61,51,99,56,98,98,99,102,57,48,98,56,53,98,102,55,51,51,97,98,56,57,56,98,54,99,48,56,97,50,49,99,53]},{"type":"Buffer","data":[99,100,61,54,55,48,66,67,48,70,69,56,52,69,67,49,55,57,70,56,51,51,57,50,54,65,69,69,56,70,70,67,55,66,66]},{"type":"Buffer","data":[114,109,61]},{"type":"Buffer","data":[118,101,61,48,53]},{"type":"Buffer","data":[109,100,61,71,111,111,103,108,101,32,72,111,109,101,32,77,105,110,105]},{"type":"Buffer","data":[105,99,61,47,115,101,116,117,112,47,105,99,111,110,46,112,110,103]},{"type":"Buffer","data":[102,110,61,79,102,105,115]},{"type":"Buffer","data":[99,97,61,49,57,57,49,55,50]},{"type":"Buffer","data":[115,116,61,48]},{"type":"Buffer","data":[98,115,61,70,65,56,70,67,65,53,69,67,66,55,67]},{"type":"Buffer","data":[110,102,61,49]},{"type":"Buffer","data":[114,115,61]}]}],"authorities":[],"additionals":[]}
+  // Google-Home-Mini-3c8bbcf90b85bf733ab898b6c08a21c5._googlecast._tcp.local
   try {
     if (response.answers !== undefined && response.answers[0] != 'undefined') // response must not be empty and some data must exist
-      queryAnswersShelly(response);
-  } catch (e) {//console.log('**********************IN catch111111**********************',e)
-  }
+      queryAnswersGoogleHome(response);
+  } catch (e) {  }
 
 })
 
