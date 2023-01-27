@@ -96,7 +96,7 @@ function validateDeviceNameWemo(devnameData) {
 //validate the DeviceName
 function validateDeviceNameSmartThing(devnameData) {
   try{
-  const regexp = /smart[\s*A_Za-z0-9\_\.\-]*/i
+  const regexp = /smartthings[\s*A_Za-z0-9\_\.\-]*/i
   const matches = devnameData.match(regexp)
 
   return Array.from(matches)

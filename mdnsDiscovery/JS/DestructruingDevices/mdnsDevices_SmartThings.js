@@ -13,9 +13,9 @@ function queryAnswersShelly(checkQueryResponseAnswers) {
   var srchResponse = responseJsonStr.toLocaleLowerCase()
 
   //Only Shelly device will be filtered that data found in Answers packet of response
-  if (srchResponse.includes('thing')) {
+  if (srchResponse.includes('smartthings')) {
 
-    //  shelly1-8CAAB56E1209
+    // lan discover mdns/dns-sd ._smartthings._tcp._site
     try { mDNSdevicesObjectWEBUI.deviceName = mDNSLocalModules.validateDeviceNameSmartThing(srchResponse);} catch (e) { }
     try { mDNSdevicesObjectWEBUI.deviceModel = mDNSdevicesObjectWEBUI.deviceName; } catch (e) { mDNSdevicesObjectWEBUI.deviceModel = ''; }
     try { mDNSdevicesObjectWEBUI.deviceIP4 = mDNSLocalModules.validateIPv4(responseJsonStr) } catch (e) { }
@@ -83,11 +83,11 @@ mdns.on('query', function (query) {
 
   query.questions.forEach(function (q) {
     console.log(q)
-    if (q.type === 'A' && q.name === '_http._tcp.local') {
+    if (q.type === 'A' && q.name === '_smartthings._tcp._site') {
       // send an A-record response for example.local
       mdns.respond({
         answers: [{
-          name: '_http._tcp.local',
+          name: '_smartthings._tcp._site',
           type: 'A',
           ttl: 300,
           data: '192.168.18.1'
@@ -100,7 +100,7 @@ mdns.on('query', function (query) {
 // lets query for an A-record for example.local
 mdns.query({
   questions: [{
-    name: '_http._tcp.local',
+    name: '_smartthings._tcp._site',
     type: 'A'
   }]
 })
