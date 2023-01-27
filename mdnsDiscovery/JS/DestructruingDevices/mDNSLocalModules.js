@@ -107,8 +107,8 @@ function validateDeviceNamePhilipsHue(devnameData) {
 
 //validate the DeviceName
 function validateDeviceNameNetatmo(devnameData) {
-  try{
-  const regexp = /netat[\s*A_Za-z0-9\_\.\-]*/i
+  try{//Netatmo Relay'
+  const regexp = /Netatmo[\s*A_Za-z0-9\_\.\-]*/i
   const matches = devnameData.match(regexp)
 
   return Array.from(matches)
@@ -150,7 +150,7 @@ function validateDeviceNameGoogleMini(devnameData) {
   try{
     //{"id":0,"type":"response","flags":1024,"flag_qr":true,"opcode":"QUERY","flag_aa":true,"flag_tc":false,"flag_rd":false,"flag_ra":false,"flag_z":false,"flag_ad":false,"flag_cd":false,"rcode":"NOERROR","questions":[],"answers":[{"name":"Google-Home-Mini-3c8bbcf90b85bf733ab898b6c08a21c5._googlecast._tcp.local","type":"TXT","ttl":4500,"class":"IN","flush":true,"data":[{"type":"Buffer","data":[105,100,61,51,99,56,98,98,99,102,57,48,98,56,53,98,102,55,51,51,97,98,56,57,56,98,54,99,48,56,97,50,49,99,53]},{"type":"Buffer","data":[99,100,61,54,55,48,66,67,48,70,69,56,52,69,67,49,55,57,70,56,51,51,57,50,54,65,69,69,56,70,70,67,55,66,66]},{"type":"Buffer","data":[114,109,61]},{"type":"Buffer","data":[118,101,61,48,53]},{"type":"Buffer","data":[109,100,61,71,111,111,103,108,101,32,72,111,109,101,32,77,105,110,105]},{"type":"Buffer","data":[105,99,61,47,115,101,116,117,112,47,105,99,111,110,46,112,110,103]},{"type":"Buffer","data":[102,110,61,79,102,105,115]},{"type":"Buffer","data":[99,97,61,49,57,57,49,55,50]},{"type":"Buffer","data":[115,116,61,48]},{"type":"Buffer","data":[98,115,61,70,65,56,70,67,65,53,69,67,66,55,67]},{"type":"Buffer","data":[110,102,61,49]},{"type":"Buffer","data":[114,115,61]}]}],"authorities":[],"additionals":[]}
     //Google-Home-Mini-3c8bbcf90b85bf733ab898b6c08a21c5._googlecast._tcp.local
-  const regexp = /google-home.mini[\s*A_Za-z0-9\_\.\-]*/i
+  const regexp = /Google-Home-Mini[\s*A_Za-z0-9\_\.\-]*/i
   const matches = devnameData.match(regexp)
 
   return Array.from(matches)

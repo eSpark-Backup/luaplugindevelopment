@@ -12,10 +12,11 @@ function queryAnswersPhilipsHuey(checkQueryResponseAnswers) {
   var srchResponse = responseJsonStr.toLocaleLowerCase()
 
   //Only PhilipsHuey device will be filtered that data found in Answers packet of response
-  if (srchResponse.includes('hue')) {
+  //Philips hue - xxxx
+  if (srchResponse.includes('Philips-hue')) {
 
     try { mDNSdevicesObjectWEBUI.deviceName = mDNSLocalModules.validateDeviceNamePhilipsHue(srchResponse);} catch (e) { }
-    try { mDNSdevicesObjectWEBUI.deviceModel = mDNSdevicesObjectWEBUI.deviceName.substring(mDNSdevicesObjectWEBUI.deviceName.indexOf('-') + 1); } catch (e) { mDNSdevicesObjectWEBUI.deviceModel = ''; }
+    try { mDNSdevicesObjectWEBUI.deviceModel = mDNSdevicesObjectWEBUI.deviceName.substring(mDNSdevicesObjectWEBUI.deviceName.indexOf('-') + 2); } catch (e) { mDNSdevicesObjectWEBUI.deviceModel = ''; }
     try { mDNSdevicesObjectWEBUI.deviceIP4 = mDNSLocalModules.validateIPv4(responseJsonStr) } catch (e) { }
     try { mDNSdevicesObjectWEBUI.deviceMac = mDNSLocalModules.validateMacAddress(responseJsonStr) } catch (e) { }
     try { mDNSdevicesObjectWEBUI.deviceIP6 = mDNSLocalModules.validateIPv6(responseJsonStr) } catch (e) { }
@@ -58,6 +59,7 @@ mdns.on('response', function (response) {
     if (err) { console.error(err); }
   });
 
+  //https://www.home-assistant.io/integrations/homekit_controller/
   // PhilipsHuey device found on Answers array from response
   //{'host': '192.168.17.5',  'hostname': 'Philips-hue.local.',  'name': 'Philips hue - xxxx',  'port': 8080,  'properties': {'c#': '21','ci': '2','ff': '1','id': 'AA:BB:CC:DD:EE:FF','md': 'BSB002','pv': '1.1','s#': '1','sf': '0'}}
 

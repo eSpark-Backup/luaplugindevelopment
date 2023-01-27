@@ -1,4 +1,4 @@
-var mdns = require('./')()
+var mdns = require('.')()
 let mDNSLocalModules = require("./mDNSLocalModules.js")
 
 const fs = require('fs');
