@@ -67,6 +67,20 @@ function validateDeviceNameSonos(devnameData) {
 }
 
 //validate the DeviceName
+function validateDeviceNameSonoff(devnameData) {
+  try{
+    //Format: eWeLink_[Device ID]	eWeLink_10000000d0
+  const regexp =  /eWeLink_[d*A_Za-z0-9\_\.\-]*/i
+  const matches = devnameData.match(regexp)
+
+  return Array.from(matches)
+
+}catch(e){return ' '
+}
+
+}
+
+//validate the DeviceName
 function validateDeviceNameWemo(devnameData) {
   try{//Wemo Dim2G 259._hap.
   const regexp = /wemo[\s*A_Za-z0-9\_\.\-]*/i
@@ -322,6 +336,7 @@ module.exports={
     validateMacAddress,
     validateDeviceNameShelly,
     validateDeviceNameSonos,
+    validateDeviceNameSonoff,
     validateDeviceNameWemo,
     validateDeviceNameSmartThing,
     validateDeviceNamePhilipsHue,

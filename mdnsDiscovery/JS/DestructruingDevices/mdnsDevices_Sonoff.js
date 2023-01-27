@@ -15,9 +15,9 @@ function queryAnswersSonoff(checkQueryResponseAnswers) {
   //Only Sonoff device will be filtered that data found in Answers packet of response
   if (srchResponse.includes('ewelink')) {
 
-    //  Sonoff1-8CAAB56E1209
+     //Format: eWeLink_[Device ID]	eWeLink_10000000d0
     try { mDNSdevicesObjectWEBUI.deviceName = mDNSLocalModules.validateDeviceNameSonoff(srchResponse);} catch (e) { }
-    try { mDNSdevicesObjectWEBUI.deviceModel = mDNSdevicesObjectWEBUI.deviceName.substring(mDNSdevicesObjectWEBUI.deviceName.indexOf('-') + 1); } catch (e) { mDNSdevicesObjectWEBUI.deviceModel = ''; }
+    try { mDNSdevicesObjectWEBUI.deviceModel = mDNSdevicesObjectWEBUI.deviceName.substring(mDNSdevicesObjectWEBUI.deviceName.indexOf('_') + 1); } catch (e) { mDNSdevicesObjectWEBUI.deviceModel = ''; }
     try { mDNSdevicesObjectWEBUI.deviceIP4 = mDNSLocalModules.validateIPv4(responseJsonStr) } catch (e) { }
     try { mDNSdevicesObjectWEBUI.deviceMac = mDNSLocalModules.validateMacAddress(responseJsonStr) } catch (e) { }
     try { mDNSdevicesObjectWEBUI.deviceIP6 = mDNSLocalModules.validateIPv6(responseJsonStr) } catch (e) { }
@@ -55,6 +55,12 @@ function queryAnswersSonoff(checkQueryResponseAnswers) {
 //main method that runs when response received
 mdns.on('response', function (response) {
 
+
+//Search in the LAN for all devices with the service type _ewelink._tcp through the DNS PTR record.
+//Get the Hostname and Port of device service via parsing out the device DNS SRV record. (The default port is 8081)
+//Get device IP address via DNS A record or by other means.
+//Get the info of “device ID”, “Service Type”, “device API interface version” and “device information” via parsing out the device DNS TXT Record.
+
   //log every response in mDNSfile.log file
   fs.appendFile('mDNSfile.log', mDNSLocalModules.formatDate(new Date()) + JSON.stringify(response) + '\n\r', err => {
     if (err) { console.error(err); }
@@ -80,11 +86,11 @@ mdns.on('query', function (query) {
 
   query.questions.forEach(function (q) {
     console.log(q)
-    if (q.type === 'A' && q.name === '_http._tcp.local') {
+    if (q.type === 'A' && q.name === '_ewelink._tcp') {
       // send an A-record response for example.local
       mdns.respond({
         answers: [{
-          name: '_http._tcp.local',
+          name: '_ewelink._tcp',
           type: 'A',
           ttl: 300,
           data: '192.168.18.1'
@@ -97,7 +103,7 @@ mdns.on('query', function (query) {
 // lets query for an A-record for example.local
 mdns.query({
   questions: [{
-    name: '_http._tcp.local',
+    name: '_ewelink._tcp',
     type: 'A'
   }]
 })
