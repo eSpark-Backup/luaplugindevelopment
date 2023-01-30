@@ -59,7 +59,7 @@ function validateDeviceNameSonos(devnameData) {
   const regexp =  /sono[d*A_Za-z0-9\_\.\-]*/gi
   const matches = devnameData.match(regexp)
 
-  return Array.from(matches)
+  return Array.from(matches)[0]
 
 }catch(e){return ' '
 }
@@ -73,7 +73,7 @@ function validateDeviceNameSonoff(devnameData) {
   const regexp =  /eWeLink_[d*A_Za-z0-9\_\.\-]*/gi
   const matches = devnameData.match(regexp)
 
-  return Array.from(matches)
+  return Array.from(matches)[0]
 
 }catch(e){return ' '
 }
@@ -86,7 +86,7 @@ function validateDeviceNameWemo(devnameData) {
   const regexp = /wemo[\s*A_Za-z0-9\_\.\-]*/gi
   const matches = devnameData.match(regexp)
 
-  return Array.from(matches)
+  return Array.from(matches)[0]
 
 }catch(e){return ' '
 }
@@ -99,7 +99,7 @@ function validateDeviceNameSmartThing(devnameData) {
   const regexp = /smartthings[\s*A_Za-z0-9\_\.\-]*/gi
   const matches = devnameData.match(regexp)
 
-  return Array.from(matches)
+  return Array.from(matches)[0]
 
 }catch(e){return ' '
 }
@@ -112,7 +112,7 @@ function validateDeviceNamePhilipsHue(devnameData) {
   const regexp = /Philips\shue\s-[\s*A_Za-z0-9\_\.\-]*/gi
   const matches = devnameData.match(regexp)
 
-  return Array.from(matches)
+  return Array.from(matches)[0]
 
 }catch(e){return ' '
 }
@@ -125,7 +125,7 @@ function validateDeviceNameNetatmo(devnameData) {
   const regexp = /Netatmo[\s*A_Za-z0-9\_\.\-]*/gi
   const matches = devnameData.match(regexp)
 
-  return Array.from(matches)
+  return Array.from(matches)[0]
 
 }catch(e){return ' '
 }
@@ -139,7 +139,7 @@ function validateDeviceNameHorus(devnameData) {
   const regexp = /horus[\s*A_Za-z0-9\_\.\-]*/gi
   const matches = devnameData.match(regexp)
 
-  return Array.from(matches)
+  return Array.from(matches)[0]
 
 }catch(e){return ' '
 }
@@ -152,7 +152,7 @@ function validateDeviceNameHikVision(devnameData) {
   const regexp = /hik[\s*A_Za-z0-9\_\.\-]*/gi
   const matches = devnameData.match(regexp)
 
-  return Array.from(matches)
+  return Array.from(matches)[0]
 
 }catch(e){return ' '
 }
@@ -167,7 +167,7 @@ function validateDeviceNameGoogleMini(devnameData) {
   const regexp = /Google-Home-Mini[\s*A_Za-z0-9\_\.\-]*/gi
   const matches = devnameData.match(regexp)
 
-  return Array.from(matches)
+  return Array.from(matches)[0]
 
 }catch(e){return ' '
 }
@@ -181,7 +181,7 @@ function validateDeviceNameEzlo(devnameData) {
   const regexp = /ezlo[\s*\d*\.A_Za-z0-9\(\)\_]*/gi
   const matches = devnameData.match(regexp)
 
-  return Array.from(matches)
+  return Array.from(matches)[0]
 
 }catch(e){return ' '
 }
@@ -198,7 +198,7 @@ function validateDeviceNameHoneywell(devnameData) {
   const regexp = /honeywell[\s*\d*\.A_Za-z0-9\(\)\_]*/gi
   const matches = devnameData.match(regexp)
 
-  return Array.from(matches)
+  return Array.from(matches)[0]
 
 }catch(e){return ' '
 }
@@ -215,7 +215,7 @@ function validateDeviceNameDaikin(devnameData) {
     const regexp = /daikin[\s*\d*\.A_Za-z0-9\(\)\_]*/gi
   const matches = devnameData.match(regexp)
 
-  return Array.from(matches)
+  return Array.from(matches)[0]
 
 }catch(e){return ' '
 }
@@ -232,7 +232,7 @@ function validateDeviceNameSensibo(devnameData) {
     const regexp = /sensibo[\s*\d*\.A_Za-z0-9\(\)\_]*/gi
   const matches = devnameData.match(regexp)
 
-  return Array.from(matches)
+  return Array.from(matches)[0]
 
 }catch(e){return ' '
 }
@@ -250,7 +250,7 @@ function validateDeviceNameEcobee(devnameData) {
     const regexp = /ecobee[\s*\d*\.A_Za-z0-9\(\)\_]*/gi
   const matches = devnameData.match(regexp)
 
-  return Array.from(matches)
+  return Array.from(matches)[0]
 
 }catch(e){return ' '
 }
@@ -268,7 +268,7 @@ function validateDeviceNameGoogle(devnameData) {
   const regexp = /nest[\s*\d*\.A_Za-z0-9\(\)\_]*/gi
   const matches = devnameData.match(regexp)
 
-  return Array.from(matches)
+  return Array.from(matches)[0]
 
 }catch(e){return ' '
 }
@@ -286,7 +286,7 @@ function validateDeviceNameDCS(devnameData) {
   const regexp = /dsc[\s*\d*\.A_Za-z0-9\(\)\_]*/gi
   const matches = devnameData.match(regexp)
 
-  return Array.from(matches)
+  return Array.from(matches)[0]
 
 }catch(e){return ' '
 }
