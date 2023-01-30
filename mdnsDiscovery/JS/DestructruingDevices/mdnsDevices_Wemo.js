@@ -16,7 +16,7 @@ function queryAnswersWemo(checkQueryResponseAnswers) {
 
     //  Wemo Dim2G 259._hap._tcp.local
     try { mDNSdevicesObjectWEBUI.deviceName = mDNSLocalModules.validateDeviceNameWemo(srchResponse);} catch (e) { }
-    try { mDNSdevicesObjectWEBUI.deviceModel = mDNSdevicesObjectWEBUI.deviceName.substring(0,deviceName.indexOf('.').replace('Wemo ',''));} catch (e) { mDNSdevicesObjectWEBUI.deviceModel = ''; }
+    try { mDNSdevicesObjectWEBUI.deviceModel = mDNSdevicesObjectWEBUI.deviceName.substring(0,deviceName.indexOf('.').replace('Wemo /gi',''));} catch (e) { mDNSdevicesObjectWEBUI.deviceModel = ''; }
     try { mDNSdevicesObjectWEBUI.deviceIP4 = mDNSLocalModules.validateIPv4(responseJsonStr) } catch (e) { }
     try { mDNSdevicesObjectWEBUI.deviceMac = mDNSLocalModules.validateMacAddress(responseJsonStr) } catch (e) { }
     try { mDNSdevicesObjectWEBUI.deviceIP6 = mDNSLocalModules.validateIPv6(responseJsonStr) } catch (e) { }
