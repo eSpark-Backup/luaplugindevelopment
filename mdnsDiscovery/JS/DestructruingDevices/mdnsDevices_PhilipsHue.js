@@ -16,7 +16,7 @@ function queryAnswersPhilipsHuey(checkQueryResponseAnswers) {
   if (srchResponse.includes('Philips-hue')) {
 
     try { mDNSdevicesObjectWEBUI.deviceName = mDNSLocalModules.validateDeviceNamePhilipsHue(srchResponse);} catch (e) { }
-    try { mDNSdevicesObjectWEBUI.deviceModel = mDNSdevicesObjectWEBUI.deviceName.substring(mDNSdevicesObjectWEBUI.deviceName.indexOf('-') + 1); } catch (e) { mDNSdevicesObjectWEBUI.deviceModel = ''; }
+    try { mDNSdevicesObjectWEBUI.deviceModel = mDNSdevicesObjectWEBUI.deviceName.substring(mDNSdevicesObjectWEBUI.deviceName.indexOf('-') + 2); } catch (e) { mDNSdevicesObjectWEBUI.deviceModel = ''; }
     try { mDNSdevicesObjectWEBUI.deviceIP4 = mDNSLocalModules.validateIPv4(responseJsonStr) } catch (e) { }
     try { mDNSdevicesObjectWEBUI.deviceMac = mDNSLocalModules.validateMacAddress(responseJsonStr) } catch (e) { }
     try { mDNSdevicesObjectWEBUI.deviceIP6 = mDNSLocalModules.validateIPv6(responseJsonStr) } catch (e) { }
