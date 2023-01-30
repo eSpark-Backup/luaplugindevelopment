@@ -38,12 +38,12 @@ function queryAnswersGoogle(checkQueryResponseAnswers) {
     }
 
     //record the packet in file
-    fs.appendFile('mDNSfile.log', mDNSLocalModules.formatDate(new Date()) + validateCommentizeLogs(mDNSdevicesObjectWEBUI.deviceName) + '\n\r', err => {
+    fs.appendFile('mDNSfile.log', mDNSLocalModules.formatDate(new Date()) + mDNSLocalModules.validateCommentizeLogs(mDNSdevicesObjectWEBUI.deviceName) + '\n\r', err => {
       if (err) { console.error(err); }
     });
 
     //display the name at UI
-    try { console.log(validateCommentizeLogs(mDNSdevicesObjectWEBUI.deviceName)) } catch (e) { validateCommentizeLogs('New') }
+    try { console.log(mDNSLocalModules.validateCommentizeLogs(mDNSdevicesObjectWEBUI.deviceName)) } catch (e) { mDNSLocalModules.validateCommentizeLogs('New') }
 
   }
 }
