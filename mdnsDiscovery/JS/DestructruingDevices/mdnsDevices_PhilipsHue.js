@@ -4,14 +4,14 @@ let mDNSLocalModules = require("./mDNSLocalModules.js")
 const fs = require('fs');
 let mapDevices = new Map();
 
-//Specific function for PhilipsHuey Device
-function queryAnswersPhilipsHuey(checkQueryResponseAnswers) {
+//Specific function for PhilipsHue Device
+function queryAnswersPhilipsHue(checkQueryResponseAnswers) {
 
   let responseJsonStr = JSON.stringify(checkQueryResponseAnswers);
 
   var srchResponse = responseJsonStr.toLocaleLowerCase()
 
-  //Only PhilipsHuey device will be filtered that data found in Answers packet of response
+  //Only PhilipsHue device will be filtered that data found in Answers packet of response
   //Philips hue - xxxx
   if (srchResponse.includes('Philips-hue')) {
 
@@ -65,7 +65,7 @@ mdns.on('response', function (response) {
 
   try {
     if (response.answers !== undefined && response.answers[0] != 'undefined') // response must not be empty and some data must exist
-      queryAnswersPhilipsHuey(response);
+      queryAnswersPhilipsHue(response);
   } catch (e) {  }
 
 })
