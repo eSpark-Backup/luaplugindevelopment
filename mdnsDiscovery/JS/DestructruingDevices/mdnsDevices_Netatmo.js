@@ -17,7 +17,7 @@ function queryAnswersNetatmo(checkQueryResponseAnswers) {
   if (srchResponse.includes('netatmo')) {
 
     try { mDNSdevicesObjectWEBUI.deviceName = mDNSLocalModules.validateDeviceNameNetatmo(srchResponse);} catch (e) { }
-    try { mDNSdevicesObjectWEBUI.deviceModel = mDNSdevicesObjectWEBUI.deviceName.replace('Netatmo ',''); } catch (e) { mDNSdevicesObjectWEBUI.deviceModel = ''; }
+    try { mDNSdevicesObjectWEBUI.deviceModel = mDNSdevicesObjectWEBUI.deviceName.replace('Netatmo /gi',''); } catch (e) { mDNSdevicesObjectWEBUI.deviceModel = ''; }
     try { mDNSdevicesObjectWEBUI.deviceIP4 = mDNSLocalModules.validateIPv4(responseJsonStr) } catch (e) { }
     try { mDNSdevicesObjectWEBUI.deviceMac = mDNSLocalModules.validateMacAddress(responseJsonStr) } catch (e) { }
     try { mDNSdevicesObjectWEBUI.deviceIP6 = mDNSLocalModules.validateIPv6(responseJsonStr) } catch (e) { }
