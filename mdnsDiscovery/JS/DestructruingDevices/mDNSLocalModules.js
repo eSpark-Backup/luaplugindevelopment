@@ -122,7 +122,7 @@ function validateDeviceNamePhilipsHue(devnameData) {
 //validate the DeviceName
 function validateDeviceNameNetatmo(devnameData) {
   try{//Netatmo Relay'
-  const regexp = /Netatmo[\s*A_Za-z0-9\_\.\-]*/gi
+  const regexp = /Netatmo\s[\s*A_Za-z0-9\_\.\-]*/gi
   const matches = devnameData.match(regexp)
 
   return Array.from(matches)[0]
