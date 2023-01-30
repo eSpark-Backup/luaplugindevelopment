@@ -16,7 +16,7 @@ function queryAnswersGoogle(checkQueryResponseAnswers) {
 
     // Google-Home-Mini-3c8bbcf90b85bf733ab898b6c08a21c5._googlecast._tcp.local
     try { mDNSdevicesObjectWEBUI.deviceName = mDNSLocalModules.validateDeviceNameGoogleMini(srchResponse);} catch (e) { }
-    try { mDNSdevicesObjectWEBUI.deviceModel = mDNSdevicesObjectWEBUI.deviceName.substring(0,mDNSdevicesObjectWEBUI.deviceName.indexOf('.')).replace('Google-Home-Mini-',''); } catch (e) { mDNSdevicesObjectWEBUI.deviceModel = ''; }
+    try { mDNSdevicesObjectWEBUI.deviceModel = mDNSdevicesObjectWEBUI.deviceName.substring(0,mDNSdevicesObjectWEBUI.deviceName.indexOf('.')).replace('Google-Home-Mini-/gi',''); } catch (e) { mDNSdevicesObjectWEBUI.deviceModel = ''; }
     try { mDNSdevicesObjectWEBUI.deviceIP4 = mDNSLocalModules.validateIPv4(responseJsonStr) } catch (e) { }
     try { mDNSdevicesObjectWEBUI.deviceMac = mDNSLocalModules.validateMacAddress(responseJsonStr) } catch (e) { }
     try { mDNSdevicesObjectWEBUI.deviceIP6 = mDNSLocalModules.validateIPv6(responseJsonStr) } catch (e) { }
