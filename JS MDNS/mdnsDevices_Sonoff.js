@@ -1,13 +1,78 @@
 var mdns = require('.')()
-let mDNSLocalModules = require("./mDNSLocalModules.js")
-
 const fs = require('fs');
 let mapDevices = new Map();
+
+//supporting datetime methods
+function padTo2Digits(num) {
+  return num.toString().padStart(2, '0');
+}
+
+//supporting datetime methods
+function formatDate(date) {
+  return (
+    [
+      date.getFullYear(),
+      padTo2Digits(date.getMonth() + 1),
+      padTo2Digits(date.getDate()),
+    ].join('-') +
+    ' ' +
+    [
+      padTo2Digits(date.getHours()),
+      padTo2Digits(date.getMinutes()),
+      padTo2Digits(date.getSeconds()),
+    ].join(':')
+  );
+}
+
+
+//validate the IPV4address
+function validateIPv4(ipv4data) {
+
+  try{
+  const regexp = '[0-9]\+\\.[0-9]\+\\.[0-9]\+\\.[0-9]+'
+  const matches = ipv4data.matchAll(regexp);
+  return Array.from(matches)[0][0];
+  }catch(e){return ' '
+}
+}
+
+//validate the MacAddress
+function validateMacAddress(macData) {
+
+try{
+  const regexp = '([0-9a-fA-F]{2}[:.-]?){5}[0-9a-fA-F]{2}';
+  const matches = macData.matchAll(regexp);
+  return Array.from(matches)[0][0];
+  }catch(e){return ' '
+}
+}
+
+//validate the IPV6address
+function validateIPv6(ipv6data) {
+try{
+  const regexp = '(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))';
+  const matches = ipv6data.matchAll(regexp);
+  return Array.from(matches)[0][0];
+  }catch(e){return ' '
+}
+
+}
+
+//validate the commentizeLogs
+function validateCommentizeLogs(devnameData) {
+try{
+  const highlightNames = "********************************************"
+return highlightNames + devnameData + '  Device Found' + highlightNames
+
+}
+catch(e){return devnameData}
+
+}
 
 //validate the DeviceName
 function validateDeviceNameSonoff(devnameData) {
   try{
-    //Format: eWeLink_[Device ID]	eWeLink_10000000d0
+
   const regexp =  /eWeLink_[d*A_Za-z0-9\_\.\-]*/gi
   const matches = devnameData.match(regexp)
   
@@ -26,16 +91,14 @@ function queryAnswersSonoff(checkQueryResponseAnswers) {
   
   var srchResponse = responseJsonStr.toLocaleLowerCase()
 
-  //sonoff.tech/diy-developer/#4
   //Only Sonoff device will be filtered that data found in Answers packet of response
   if (srchResponse.includes('ewelink')) {
 
-     //Format: eWeLink_[Device ID]	eWeLink_10000000d0
     try { mDNSdevicesObjectWEBUI.deviceName = validateDeviceNameSonoff(srchResponse);} catch (e) { }
     try { mDNSdevicesObjectWEBUI.deviceModel = mDNSdevicesObjectWEBUI.deviceName.substring(mDNSdevicesObjectWEBUI.deviceName.indexOf('_') + 1); } catch (e) { mDNSdevicesObjectWEBUI.deviceModel = ''; }
-    try { mDNSdevicesObjectWEBUI.deviceIP4 = mDNSLocalModules.validateIPv4(responseJsonStr) } catch (e) { }
-    try { mDNSdevicesObjectWEBUI.deviceMac = mDNSLocalModules.validateMacAddress(responseJsonStr) } catch (e) { }
-    try { mDNSdevicesObjectWEBUI.deviceIP6 = mDNSLocalModules.validateIPv6(responseJsonStr) } catch (e) { }
+    try { mDNSdevicesObjectWEBUI.deviceIP4 = validateIPv4(responseJsonStr) } catch (e) { }
+    try { mDNSdevicesObjectWEBUI.deviceMac = validateMacAddress(responseJsonStr) } catch (e) { }
+    try { mDNSdevicesObjectWEBUI.deviceIP6 = validateIPv6(responseJsonStr) } catch (e) { }
 
     //Dictionary mustnot have the same Attribute already
     if (!mapDevices.has(mDNSdevicesObjectWEBUI.deviceName)) {
@@ -54,12 +117,12 @@ function queryAnswersSonoff(checkQueryResponseAnswers) {
     }
 
     //record the packet in file
-    fs.appendFile('mDNSfile.log', mDNSLocalModules.formatDate(new Date()) + mDNSLocalModules.validateCommentizeLogs(mDNSdevicesObjectWEBUI.deviceName) + '\n\r', err => {
+    fs.appendFile('mDNSfile.log', formatDate(new Date()) + validateCommentizeLogs(mDNSdevicesObjectWEBUI.deviceName) + '\n\r', err => {
       if (err) { console.error(err); }
     });
 
     //display the name at UI
-    try { console.log(mDNSLocalModules.validateCommentizeLogs(mDNSdevicesObjectWEBUI.deviceName)) } catch (e) { mDNSLocalModules.validateCommentizeLogs('New') }
+    try { console.log(validateCommentizeLogs(mDNSdevicesObjectWEBUI.deviceName)) } catch (e) { validateCommentizeLogs('New') }
 
   }
 }
@@ -77,11 +140,10 @@ mdns.on('response', function (response) {
 //Get the info of “device ID”, “Service Type”, “device API interface version” and “device information” via parsing out the device DNS TXT Record.
 
   //log every response in mDNSfile.log file
-  fs.appendFile('mDNSfile.log', mDNSLocalModules.formatDate(new Date()) + JSON.stringify(response) + '\n\r', err => {
+  fs.appendFile('mDNSfile.log', formatDate(new Date()) + JSON.stringify(response) + '\n\r', err => {
     if (err) { console.error(err); }
   });
 
-  //_ewelink._tcp
   try {
     if (response.answers !== undefined && response.answers[0] != 'undefined') // response must not be empty and some data must exist
       queryAnswersSonoff(response);
