@@ -1,8 +1,74 @@
 var mdns = require('./')()
-let mDNSLocalModules = require("./mDNSLocalModules.js")
-
 const fs = require('fs');
 let mapDevices = new Map();
+
+//supporting datetime methods
+function padTo2Digits(num) {
+  return num.toString().padStart(2, '0');
+}
+
+//supporting datetime methods
+function formatDate(date) {
+  return (
+    [
+      date.getFullYear(),
+      padTo2Digits(date.getMonth() + 1),
+      padTo2Digits(date.getDate()),
+    ].join('-') +
+    ' ' +
+    [
+      padTo2Digits(date.getHours()),
+      padTo2Digits(date.getMinutes()),
+      padTo2Digits(date.getSeconds()),
+    ].join(':')
+  );
+}
+
+
+//validate the IPV4address
+function validateIPv4(ipv4data) {
+
+  try{
+  const regexp = '[0-9]\+\\.[0-9]\+\\.[0-9]\+\\.[0-9]+'
+  const matches = ipv4data.matchAll(regexp);
+  return Array.from(matches)[0][0];
+  }catch(e){return ' '
+}
+}
+
+//validate the MacAddress
+function validateMacAddress(macData) {
+
+try{
+  const regexp = '([0-9a-fA-F]{2}[:.-]?){5}[0-9a-fA-F]{2}';
+  const matches = macData.matchAll(regexp);
+  return Array.from(matches)[0][0];
+  }catch(e){return ' '
+}
+}
+
+//validate the IPV6address
+function validateIPv6(ipv6data) {
+try{
+  const regexp = '(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))';
+  const matches = ipv6data.matchAll(regexp);
+  return Array.from(matches)[0][0];
+  }catch(e){return ' '
+}
+
+}
+
+//validate the commentizeLogs
+function validateCommentizeLogs(devnameData) {
+try{
+  const highlightNames = "********************************************"
+return highlightNames + devnameData + '  Device Found' + highlightNames
+
+}
+catch(e){return devnameData}
+
+}
+
 
 //validate the DeviceName
 function validateDeviceNameHorus(devnameData) {
@@ -28,9 +94,9 @@ function queryAnswersHorus(checkQueryResponseAnswers) {
 
     try { mDNSdevicesObjectWEBUI.deviceName = validateDeviceNameHorus(srchResponse);} catch (e) { }
     try { mDNSdevicesObjectWEBUI.deviceModel = mDNSdevicesObjectWEBUI.deviceName; } catch (e) { mDNSdevicesObjectWEBUI.deviceModel = ''; }
-    try { mDNSdevicesObjectWEBUI.deviceIP4 = mDNSLocalModules.validateIPv4(responseJsonStr) } catch (e) { }
-    try { mDNSdevicesObjectWEBUI.deviceMac = mDNSLocalModules.validateMacAddress(responseJsonStr) } catch (e) { }
-    try { mDNSdevicesObjectWEBUI.deviceIP6 = mDNSLocalModules.validateIPv6(responseJsonStr) } catch (e) { }
+    try { mDNSdevicesObjectWEBUI.deviceIP4 = validateIPv4(responseJsonStr) } catch (e) { }
+    try { mDNSdevicesObjectWEBUI.deviceMac = validateMacAddress(responseJsonStr) } catch (e) { }
+    try { mDNSdevicesObjectWEBUI.deviceIP6 = validateIPv6(responseJsonStr) } catch (e) { }
 
     //Dictionary mustnot have the same Attribute already
     if (!mapDevices.has(mDNSdevicesObjectWEBUI.deviceName)) {
@@ -49,12 +115,12 @@ function queryAnswersHorus(checkQueryResponseAnswers) {
     }
 
     //record the packet in file
-    fs.appendFile('mDNSfile.log', mDNSLocalModules.formatDate(new Date()) + mDNSLocalModules.validateCommentizeLogs(mDNSdevicesObjectWEBUI.deviceName) + '\n\r', err => {
+    fs.appendFile('mDNSfile.log', formatDate(new Date()) + validateCommentizeLogs(mDNSdevicesObjectWEBUI.deviceName) + '\n\r', err => {
       if (err) { console.error(err); }
     });
 
     //display the name at UI
-    try { console.log(mDNSLocalModules.validateCommentizeLogs(mDNSdevicesObjectWEBUI.deviceName)) } catch (e) { mDNSLocalModules.validateCommentizeLogs('New') }
+    try { console.log(validateCommentizeLogs(mDNSdevicesObjectWEBUI.deviceName)) } catch (e) {validateCommentizeLogs('New') }
 
   }
 }
@@ -66,13 +132,9 @@ function queryAnswersHorus(checkQueryResponseAnswers) {
 mdns.on('response', function (response) {
 
   //log every response in mDNSfile.log file
-  fs.appendFile('mDNSfile.log', mDNSLocalModules.formatDate(new Date()) + JSON.stringify(response) + '\n\r', err => {
+  fs.appendFile('mDNSfile.log', formatDate(new Date()) + JSON.stringify(response) + '\n\r', err => {
     if (err) { console.error(err); }
   });
-
-  // Shelly device found on Answers array from response
-  //{"id":0,"type":"response","flags":1152,"flag_qr":true,"opcode":"QUERY","flag_aa":true,"flag_tc":false,"flag_rd":false,"flag_ra":true,"flag_z":false,"flag_ad":false,"flag_cd":false,"rcode":"NOERROR","questions":[],"answers":[{"name":"_services._dns-sd._udp.local","type":"PTR","ttl":4500,"class":"IN","flush":false,"data":"_http._tcp.local"},{"name":"_http._tcp.local","type":"PTR","ttl":4500,"class":"IN","flush":false,"data":"shelly1-8CAAB56E1209._http._tcp.local"},{"name":"shelly1-8CAAB56E1209._http._tcp.local","type":"SRV","ttl":120,"class":"IN","flush":true,"data":{"priority":0,"weight":0,"port":80,"target":"shelly1-8CAAB56E1209.local"}},{"name":"shelly1-8CAAB56E1209._http._tcp.local","type":"TXT","ttl":120,"class":"IN","flush":true,"data":[{"type":"Buffer","data":[105,100,61,115,104,101,108,108,121,49,45,56,67,65,65,66,53,54,69,49,50,48,57]},{"type":"Buffer","data":[97,114,99,104,61,101,115,112,56,50,54,54]},{"type":"Buffer","data":[97,112,112,61,115,119,105,116,99,104,49]},{"type":"Buffer","data":[102,119,95,118,101,114,115,105,111,110,61,49,46,48]},{"type":"Buffer","data":[102,119,95,105,100,61,50,48,50,50,49,48,50,55,45,48,57,49,52,50,55,47,118,49,46,49,50,46,49,45,103,97,57,49,49,55,100,51]},{"type":"Buffer","data":[100,105,115,99,111,118,101,114,97,98,108,101,61,102,97,108,115,101]}]},{"name":"shelly1-8CAAB56E1209.local","type":"A","ttl":120,"class":"IN","flush":true,"data":"10.100.132.58"},{"name":"shelly1-8CAAB56E1209.local","type":"NSEC","ttl":120,"class":"IN","flush":true,"data":{"nextDomain":"shelly1-8CAAB56E1209.local","rrtypes":["A"]}}],"authorities":[],"additionals":[]}
-  // "name":"shelly1-8CAAB56E1209.local", "type":"A", "ttl":120,  "class":"IN", "flush":true, "data":"10.100.132.58"
 
   try {
     if (response.answers !== undefined && response.answers[0] != 'undefined') // response must not be empty and some data must exist
