@@ -1,0 +1,36 @@
+		{
+			"configuration":{
+				"type":"static",
+				"script":"shelly.mdns/scripts/configure",
+				"inputs":[
+		
+					{
+						"name":"Multicast IP",
+						"description":"Enter MultiCastIP Here:239.255.255.250",
+						"field":"multicastIP",
+						"required":false,
+						"type":"string"
+					},
+					{
+						"name":"Multicast Port",
+						"description":"Enter MultiCastIP Port:1900",
+						"field":"multicastPort",
+						"required":false,
+						"type":"int"
+					},
+					{
+						"name":"Discovery Duration(sec)",
+						"description":"20(sec)",
+						"field":"multicastDuration",
+						"required":false,
+						"type":"int"
+					},{
+						"name":"Payload",
+						"description":"{'msg':{    'cmd':'scan',    'data':{      'account_topic':'reserve'    }  }}\r\n",
+						"field":"PayloadString",
+						"required":false,
+						"type":"string"
+					}
+				]
+			}
+		}
