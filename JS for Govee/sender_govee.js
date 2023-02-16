@@ -10,3 +10,13 @@ client.send(MESSAGE, PORT, MULTICAST_ADDR, (err) => {
   console.log('Client sent message to server...');
   client.close();
 });
+
+
+server.bind(PORT, () => {
+  server.addMembership(MULTICAST_ADDR);
+  console.log(`Server listening on port ${PORT}...`);
+});
+
+server.on('message', (msg, rinfo) => {
+  console.log(`Server received message from ${rinfo.address}:${rinfo.port}: ${msg}`);
+});
