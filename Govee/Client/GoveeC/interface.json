@@ -1,0 +1,15 @@
+{
+	"configuration":{
+		"type":"static",
+		"script":"goveedevice.discoveryclient/scripts/configure",
+		"inputs":[
+		{
+			"name": "Payload string",
+			"description": "Enter payload string",
+			"field": "PayloadString",
+			"required": false,
+			"type": "string"
+		}
+	]
+	}
+}

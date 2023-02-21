@@ -1,0 +1,47 @@
+{
+	"id": "goveedevice.discoveryclient",
+	"version": "1.01.01",
+	"meta": {
+		"name": {
+			"text": "Govee Client Device Discovery plugin"
+		},
+		"description": {
+			"text": "Govee Client plugin with the bare minimal configs, and no functionality"
+		},
+		"author": {
+			"text": "MASB Innovation"
+		},
+		"type": "node",
+		"language": "lua",
+		"placement": {
+			"static": true,
+			"custom": true
+		}
+	},
+	"type": "gateway",
+	"dependencies": {
+		"firmware": "2.0",
+		"addons": [
+			{
+				"id": "lua",
+				"version": "1.0"
+			}
+		]
+	},
+	"permissions": [
+		"core",
+		"logging",
+		"storage",		
+		"network",
+		"http"
+	],
+	"executionPolicy": "restoreLastScriptState",
+	"startup": "scripts/startup",
+	"teardown": "scripts/teardown",
+	"gateway": {
+		"name": "goveedevice.discoveryclient",
+		"label": "MASB Minimal test plugin",
+		"setItemValueCommand": "HUB:goveedevice.discoveryclient/scripts/set_item_value",
+		"forceRemoveDeviceCommand": "HUB:goveedevice.discoveryclient/scripts/delete_device"
+	}
+}
