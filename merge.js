@@ -6,7 +6,6 @@ const PORT = 4001;
 const serverPORT = 4001;
 const MULTICAST_ADDR = '239.255.255.250';
 const MESSAGEpayload = JSON.stringify('{msg:{    cmd:"scan",    data:{      account_topic:"reserve"    }  }}')
-// const MESSAGEpayload = '{"msg":{    "cmd":"scan",    "data":{      "account_topic":"reserve"    }  }}';
 
 client.send(MESSAGEpayload, PORT, MULTICAST_ADDR, (err) => {
   if (err) throw err;
