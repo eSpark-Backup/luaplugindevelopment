@@ -1,13 +1,13 @@
 {
 	"configuration":{
 		"type":"static",
-		"script":"goveedevice.discoveryserver/scripts/configure",
+		"script":"goveedevizes.discoveryserver/scripts/configure",
 		"inputs":[
 		 		{
-		 			"name": "Payload string",
-		 			"description": "Enter payload string",
-		 			"field": "PayloadString",
-		 			"required": false,
+		 			"name": "Set Device ON Off",
+		 			"description": "Enter 0-Off or 1-On",
+		 			"field": "DevOnOff",
+		 			"required": true,
 		 			"type": "string"
 		 		}
 			]

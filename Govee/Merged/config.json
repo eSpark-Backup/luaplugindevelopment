@@ -1,9 +1,9 @@
 {
-	"id": "goveedevice.discoveryserver",
-	"version": "1.01.02",
+	"id": "goveedevizes.discoveryserver",
+	"version": "1.01.03",
 	"meta": {
 		"name": {
-			"text": "Govee Device Discovery Server plugin"
+			"text": "Govee Discovery Command plugin"
 		},
 		"description": {
 			"text": "Govee Server plugin with the bare minimal configs, and no functionality"
@@ -40,9 +40,9 @@
 	"startup": "scripts/startup",
 	"teardown": "scripts/teardown",
 	"gateway": {
-		"name": "goveedevice.discoveryserver",
+		"name": "goveedevizes.discoveryserver",
 		"label": "MASB Minimal test plugin",
-		"setItemValueCommand": "HUB:goveedevice.discoveryserver/scripts/set_item_value",
-		"forceRemoveDeviceCommand": "HUB:goveedevice.discoveryserver/scripts/delete_device"
+		"setItemValueCommand": "HUB:goveedevizes.discoveryserver/scripts/set_item_value",
+		"forceRemoveDeviceCommand": "HUB:goveedevizes.discoveryserver/scripts/delete_device"
 	}
 }
