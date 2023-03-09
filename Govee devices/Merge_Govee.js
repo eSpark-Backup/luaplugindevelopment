@@ -69,7 +69,7 @@ setTimeout(function()
 ////////////////////////////////////  CLIENT CONTROL VALUE ON/OFF ///////////////////////////////////////////////////////
 
 const ControlPORT = 4003;
-let MESSAGEpayload
+let Switchpayload
 setTimeout(() => {
 if (value) 
     { 
@@ -107,9 +107,9 @@ else
 
 setTimeout(() => {
 
-  if (MESSAGEpayload) 
+  if (Switchpayload) 
   {
-      const value = MESSAGEpayload.msg.data.value;
+      const value = Switchpayload.msg.data.value;
 
     if (value == '0') 
                     {
@@ -174,8 +174,8 @@ setTimeout(() => {
 
 
 ////////////////////////////////////////////////// Device Status Query Command //////////////////////////////////////////////////////////
-const Statusque_PORT = 4002;
-const statusqueue = '{'+
+const Statusquery_PORT = 4002;
+const Statusquerypayload = '{'+
   '  "msg":{'+
 '    "cmd":"devstatus",'+
 '    "data":{'+
@@ -186,7 +186,7 @@ const statusqueue = '{'+
 
 setTimeout(() => {
 const Statusquery= dgram.createSocket({ type: 'udp4', reuseAddr: false });
-Statusquery.send(statusqueue, Statusque_PORT, MULTICAST_ADDR, (err) => {
+Statusquery.send(Statusquerypayload, Statusquery_PORT, MULTICAST_ADDR, (err) => {
   if (err) throw err;
   console.log('Client send status queue to server...');
 Statusquery.close();
@@ -194,16 +194,16 @@ Statusquery.close();
 },14000)
 
 /////////////////////////////////////////////////// Server Reply with Status Payload /////////////////////////////////////////////////////////
-const STATUSpayload = '{' +
+const Replyquertpayload = '{' +
 '  "msg":'+
 '      {'+
 '        "cmd":"devStatus", '+
 '        "data":{'+
 '          "onOff":0,'+
-'          "brightness":57,'+
+'          "brightness":100`,'+
 '          "color":{'+
 '            "r":255,'+
-'            "g":128,'+
+'            "g":0,'+
 '            "b":0'+
 '          },'+
 '          "colorTemInKelvin":7200'+
@@ -213,9 +213,8 @@ const STATUSpayload = '{' +
 
 
     setTimeout(() => {
-    if (STATUSpayload) {
-      console.log(STATUSpayload);
-      // TODO: Control the switch to turn it of
+    if (Replyquertpayload) {
+      console.log(Replyquertpayload);
     } else {
       console.log("Invalid value");
     }
