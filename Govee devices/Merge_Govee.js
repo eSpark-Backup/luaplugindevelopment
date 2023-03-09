@@ -77,7 +77,7 @@ if (value)
 
         {
           msg: {
-            cmd: "scan",
+            cmd: "turn",
             data: {
               value: 1
             }
