@@ -6,6 +6,7 @@ const client = dgram.createSocket({type:'udp4', reuseAddr:"false"});
 const PORT = 4001;
 const MULTICAST_ADDR = '239.255.255.250';
 
+//masb-discovery message
 const MESSAGE =
 '{'+
 '"msg":{'+
@@ -22,7 +23,7 @@ const MESSAGE =
 
 const server = dgram.createSocket('udp4');
 
-const message = 
+const message =
 '  {'+
 '    "msg":{ '+
 '      "cmd":"scan",'+
@@ -59,44 +60,45 @@ const ServerPORT = 4002;
 
 let value;
 const mesg = JSON.parse(message);
-setTimeout(function() 
+setTimeout(function()
   {
     value = mesg.msg.data.ip;
     console.log(`Server received message from: ${value}`);
-  }, 2000); 
+  }, 2000);
 
 
 ////////////////////////////////////  CLIENT CONTROL VALUE ON/OFF ///////////////////////////////////////////////////////
 
 const ControlPORT = 4003;
-let Switchpayload
 setTimeout(() => {
-if (value) 
-    { 
-        MESSAGEpayload = 
+if (value)
+    {
+		////masb-write in govee format
+        MESSAGEpayload =
 
-        {
-          msg: {
-            cmd: "turn",
-            data: {
-              value: 1
-            }
-          }
-        };
+'{'+
+    '"msg": {' +
+    '  "cmd": "turn",' +
+        ' "data": {' +
+    '  "value": 1'+//masb-add to variable
+    ' }'+
+    '}'+
+'}'
 
         const clientControl = dgram.createSocket({ type: 'udp4', reuseAddr: false });
-        clientControl.send(JSON.stringify(MESSAGEpayload), ControlPORT, value, (err) => {
+        ////masb-govee not understan in sending json format
+        clientControl.send((MESSAGEpayload), ControlPORT, value, (err) => {
             if (err) throw err;
             console.log('Client sent control command to server...');
             clientControl.close();
           })
-        
+
     }
 else
     {
-        console.log("No IP detected")     
+        console.log("No IP detected")
     }
-  
+
 }, 5000);
 
 
@@ -107,19 +109,20 @@ else
 
 setTimeout(() => {
 
-  if (Switchpayload) 
+  if (MESSAGEpayload)
   {
-      const value = Switchpayload.msg.data.value;
+	  //masb-convert in json to read the value
+      const value = JSON.parse(MESSAGEpayload).msg.data.value;
 
-    if (value == '0') 
+    if (value == '0')
                     {
                       console.log("Switch is off");
-                    } 
-    else if (value == '1') 
+                    }
+    else if (value == '1')
                             {
                               console.log("Switch is on");
                             }
-    else 
+    else
         {
           console.log("Invalid value Try again");
         }
@@ -128,24 +131,28 @@ setTimeout(() => {
 }, 7000);
 
 
-///////////////////////////////////// Client set Brightness Control //////////////////////////////////////////////
+// ///////////////////////////////////// Client set Brightness Control //////////////////////////////////////////////
 
 const BrightnessPORT = 4002;
 
-const Brightnesspayload = {
-  msg:{
-    cmd:"brightness",
-    data:{
-      value:80
-    }
-  }
-};
+////masb-write in govee format
+const Brightnesspayload =
+
+'{'+
+    '"msg": {' +
+    '  "cmd": "brightness",' +
+        ' "data": {' +
+    '  "value": 80'+//masb-add to variable
+    ' }'+
+    '}'+
+'}'
 server
 setTimeout(() => {
 const brightnesscontrol= dgram.createSocket({ type: 'udp4', reuseAddr: false });
-brightnesscontrol.send(JSON.stringify(Brightnesspayload), BrightnessPORT, MULTICAST_ADDR, (err) => {
+////masb-govee not understan in sending json format
+brightnesscontrol.send((Brightnesspayload), BrightnessPORT, MULTICAST_ADDR, (err) => {
   if (err) throw err;
-  console.log('Client sett brightness to server...');
+  console.log('Client send brightness to server...');
 brightnesscontrol.close();
 })
 },9000);
@@ -156,13 +163,13 @@ brightnesscontrol.close();
 ///////////////////////////////////// Server sett the brightness //////////////////////////////////////////////
 setTimeout(() => {
 
-  if (Brightnesspayload) 
+  if (Brightnesspayload)
   {
-      const brightness= Brightnesspayload.msg.data.value;
+      const brightness= JSON.parse(Brightnesspayload).msg.data.value;
     		if (brightness >= 0 && brightness <= 100) {
       			console.log(`Setting brightness to ${brightness}`);
         }
-    else 
+    else
         {
           console.log("Invalid value Try again");
         }
@@ -173,7 +180,7 @@ setTimeout(() => {
 
 
 
-////////////////////////////////////////////////// Device Status Query Command //////////////////////////////////////////////////////////
+//////////////////////////////////////////////// Device Status Query Command //////////////////////////////////////////////////////////
 const Statusquery_PORT = 4002;
 const Statusquerypayload = '{'+
   '  "msg":{'+
@@ -194,7 +201,7 @@ Statusquery.close();
 },14000)
 
 /////////////////////////////////////////////////// Server Reply with Status Payload /////////////////////////////////////////////////////////
-const Replyquertpayload = '{' +
+const Replyquerypayload = '{' +
 '  "msg":'+
 '      {'+
 '        "cmd":"devStatus", '+
@@ -210,13 +217,12 @@ const Replyquertpayload = '{' +
 '        }'+
 '      }'+
 '}'
-
+// According to the rule if you set a temperater which is greater 10  it will be set & other it will be rgb
 
     setTimeout(() => {
-    if (Replyquertpayload) {
-      console.log(Replyquertpayload);
+    if (Replyquerypayload) {
+      console.log(Replyquerypayload);
     } else {
       console.log("Invalid value");
     }
   },18000)
- 
