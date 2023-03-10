@@ -9,7 +9,7 @@ const MULTICAST_ADDR = '239.255.255.250';
 
 const MESSAGEpayload = '{'+
 '  "msg":{'+
-'    "cmd":"scan",'+
+'    "cmd":"turn",'+
 '    "data":{'+
 '      "value":0'+
 '    }'+
