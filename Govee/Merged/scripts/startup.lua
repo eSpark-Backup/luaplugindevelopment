@@ -5,4 +5,5 @@ logging.info("Plugins Discovery Has Been STARTED SUCCECCFULLY")
 isSocketName = false
 isNetworkHandleExist = false
 totalPacketsReceived=0
+govee_devices_ip = {}
 --handleserver = 0
