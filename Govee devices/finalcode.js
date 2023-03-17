@@ -92,8 +92,7 @@ function validateIPv4(ipv4data) {
       return Array.from(matches)[0][0];
       }catch(e){return ' '
     }
-  }
-
+}
 console.log('****************Before Sending Discovery Packet*************...');
 //SEND Discovery Packet
 client.send(mESSAGEpayload, DiscoveryPORT, MULTICAST_ADDR, (err) => {
@@ -106,7 +105,6 @@ console.log('****************Before Server Listening on 4002 *************...');
 server.bind(serverPORT, () => {
   console.log(`Server listening on port ${serverPORT}...`);
   server.addMembership(MULTICAST_ADDR);
-
 });
 
 console.log('1 Before Sleeping to 2 seconds...');
@@ -116,95 +114,105 @@ server.on('message', (revdata, rinfo) => {
   console.log(`Server received message port 4002 from ${rinfo.address}:${rinfo.port}: ${revdata}`);
   //deviceIPFound = revdata.msg.data.ip;
   deviceIPFound = validateIPv4(`${rinfo.address}`)
+  
+  if(deviceIPFound.length>=8){
+    console.log('2 Before Sleeping to 2 seconds...');
+    sleep(2000);
+    
+      
+    // console.log('****************Before Sending Get Status Packet*************...');
+    // //SEND Get Status Packet
+    // client.send(devstat, CommandPORT, MULTICAST_ADDR, (err) => {
+    //   if (err) throw err;
+    //     console.log('Client sent Device Status Message to Server...');
+    // });
+    
+    //receive packets for device Status
+    // servercommand.on('message', (revdata, rinfo) => {
+    //   console.log(`Server received message from ${rinfo.address}:${rinfo.port}: ${msg}`);
+    // '        "r":'+ColorRED+','+
+    // '        "g":'+ColorGREEN+','+
+    // '        "b":'+ColorBLUE
+    // '      },'+
+    // '      "colorTemInKelvin":'+ColorTemperature
+    
+    // SetdeviceOnOff = revdata.msg.data.onOff;
+    // SetBrightness = revdata.msg.data.brightness;
+    // ColorRED = revdata.msg.data.color.r;
+    // ColorGREEN = revdata.msg.data.color.g;
+    // ColorBLUE = revdata.msg.data.color.b;
+    // ColorTemperature = revdata.msg.colorTemInKelvin;
+    // servercommand.close();
+    // });
+    
+    
+    //SEND Device Set ON/OFF
+    client.send(deviceOnOff, CommandPORT, MULTICAST_ADDR, (err) => {
+      if (err) throw err;
+        console.log('Client sent ON/OFF Message to Server...');
+    });
+    sleep(4000);
+    
+    
+    
+    console.log('****************Before Sending Set Broghtness Packet*************...');
+    if (sendBrightness)
+    {
+      brightnessPayLoad = '{'+
+    '  "msg":{'+
+    '    "cmd":"brightness",'+
+    '    "data":{'+
+    '      "value":'+SetBrightness
+    '    }'+
+    '  }'+
+    '}';
+    
+    
+    //SEND Device Brightness
+    client.send(brightnessPayLoad, CommandPORT, MULTICAST_ADDR, (err) => {
+      if (err) throw err;
+        console.log('Client sent brightness Message to Server...');
+    });
+    }
+    
+    sleep(4000);
+    
+    console.log('****************Before Sending Set RGB Packet*************...');
+    if (sendRGB_ColorTemp)
+    {
+     
+      mESSAGEpayloadRGB = '{' +
+    '  "msg":{'+
+    '    "cmd":"colorwc",'+
+    '    "data":{'+
+    '      "color":{'+
+    '        "r":'+ColorRED+','+
+    '        "g":'+ColorGREEN+','+
+    '        "b":'+ColorBLUE
+    '      },'+
+    '      "colorTemInKelvin":'+ColorTemperature
+    '    }'+
+    '  }'+
+    '}';
+    
+    //SEND Device RGB and Color Temp
+    client.send(mESSAGEpayloadRGB, CommandPORT, MULTICAST_ADDR, (err) => {
+      if (err) throw err;
+        console.log('Client sent RGB and ColorTemperature Message to Server...');
+    
+    });
+    
+    }
+    console.log('****************All Message sent from server*************...');
+    // client.close();
+  }
+  
+
+console.log('****************Ending Program*************...');
+  
+  
   server.close();
 });
 
 
   
-console.log('2 Before Sleeping to 2 seconds...');
-sleep(2000);
-
-  
-console.log('****************Before Sending Get Status Packet*************...');
-//SEND Get Status Packet
-client.send(devstat, CommandPORT, MULTICAST_ADDR, (err) => {
-  if (err) throw err;
-    console.log('Client sent Device Status Message to Server...');
-});
-
-//receive packets for device Status
-servercommand.on('message', (revdata, rinfo) => {
-  console.log(`Server received message from ${rinfo.address}:${rinfo.port}: ${msg}`);
-'        "r":'+ColorRED+','+
-'        "g":'+ColorGREEN+','+
-'        "b":'+ColorBLUE
-'      },'+
-'      "colorTemInKelvin":'+ColorTemperature
-
-SetdeviceOnOff = revdata.msg.data.onOff;
-SetBrightness = revdata.msg.data.brightness;
-ColorRED = revdata.msg.data.color.r;
-ColorGREEN = revdata.msg.data.color.g;
-ColorBLUE = revdata.msg.data.color.b;
-ColorTemperature = revdata.msg.colorTemInKelvin;
-
-servercommand.close();
-});
-
-
-//SEND Device Set ON/OFF
-client.send(deviceOnOff, CommandPORT, MULTICAST_ADDR, (err) => {
-  if (err) throw err;
-    console.log('Client sent ON/OFF Message to Server...');
-});
-
-
-console.log('****************Before Sending Set Broghtness Packet*************...');
-if (sendBrightness)
-{
-  brightnessPayLoad = '{'+
-'  "msg":{'+
-'    "cmd":"brightness",'+
-'    "data":{'+
-'      "value":'+SetBrightness
-'    }'+
-'  }'+
-'}';
-
-
-//SEND Device Brightness
-client.send(brightnessPayLoad, CommandPORT, MULTICAST_ADDR, (err) => {
-  if (err) throw err;
-    console.log('Client sent brightness Message to Server...');
-});
-}
-
-console.log('****************Before Sending Set RGB Packet*************...');
-if (sendRGB_ColorTemp)
-{
- 
-  mESSAGEpayloadRGB = '{' +
-'  "msg":{'+
-'    "cmd":"colorwc",'+
-'    "data":{'+
-'      "color":{'+
-'        "r":'+ColorRED+','+
-'        "g":'+ColorGREEN+','+
-'        "b":'+ColorBLUE
-'      },'+
-'      "colorTemInKelvin":'+ColorTemperature
-'    }'+
-'  }'+
-'}';
-
-//SEND Device RGB and Color Temp
-client.send(mESSAGEpayloadRGB, CommandPORT, MULTICAST_ADDR, (err) => {
-  if (err) throw err;
-    console.log('Client sent RGB and ColorTemperature Message to Server...');
-
-});
-
-}
-
-client.close();
-console.log('****************Ending Program*************...');
