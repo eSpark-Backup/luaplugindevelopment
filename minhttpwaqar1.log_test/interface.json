@@ -1,0 +1,23 @@
+{
+    "configuration":{
+        "type":"static",
+        "script": "minhttpwaqar1.log_test/scripts/configure",
+        "inputs": [
+            {
+                "name": "Optional string",
+                "description": "Enter Optional string",
+                "field": "OPtional string",
+                "required": false,
+                "type": "string"
+            },
+            {
+                "name": "Enter your Name",
+                "description": "THis is optional",
+                "field": "OPtional string",
+                "required": false,
+                "type": "string"
+            }
+            
+        ]
+    }
+}
