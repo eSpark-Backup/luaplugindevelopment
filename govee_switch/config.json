@@ -1,0 +1,50 @@
+{
+    "id": "ezlo.govee",
+    "version": "1.01.08",
+    "meta": {
+      "name": {
+        "text": "ZZEzlo GoveeLights plugin"
+      },
+      "description": {
+        "text": "The GoveeLights plugin controls wireless LED light"
+      },
+      "author": {
+        "text": "Ezlo Innovation"
+      },
+      "type": "node",
+      "language": "lua",
+      "placement": {
+          "static": true,
+          "custom": true
+      }
+    },
+    "type": "gateway",
+    "dependencies": {
+      "firmware": "2.0",
+      "addons": [
+        {
+          "id": "lua",
+          "version": "1.0"
+        }
+      ]
+    },
+    "permissions": [
+      "core",
+      "timer",
+      "network",
+      "logging",
+      "http",
+      "storage",
+      "json"
+    ],
+    "executionPolicy": "restoreLastScriptState",
+    "startup": "scripts/startup",
+    "teardown": "scripts/teardown",
+    "gateway": {
+      "name": "ezlo.govee",
+      "label": "GoveeLights plugin",
+      "setItemValueCommand": "HUB:ezlo.govee/scripts/set_item_value",
+      "setSettingValueCommand": "HUB:ezlo.govee/scripts/set_setting_value",
+      "forceRemoveDeviceCommand": "HUB:ezlo.govee/scripts/delete_device"
+    }
+  }

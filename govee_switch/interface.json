@@ -1,0 +1,68 @@
+{
+    "configuration": {
+        "type": "static",
+        "placement": "device,plugin",
+        "script": "HUB:ezlo.govee/scripts/configure",
+        "inputs": [
+            {
+                "name": "Set Device ON-1 Off-0",
+                "description": "Enter 0-Off or 1-On",
+                "field": "DevOnOff",
+                "required": false,
+                "type": "int"
+            },
+            {
+               "name": "Set Brightness 1-100 (101 to Unset)",
+               "description": "Enter value between 1-100",
+               "field": "Devbrightness",
+               "required": true,
+               "type": "int",
+               "minimum": 1,
+               "maximum": 101
+           },
+           {
+               "name": "Set Red Color 0-255 (256 to Unset)",
+               "description": "Enter Red color value 0-255",
+               "field": "DevRed",
+               "required": false,
+               "type": "int",
+               "minimum": 0,
+               "maximum": 256
+           },
+           {
+               "name": "Set Green Color 0-255 (256 to Unset)",
+               "description": "Enter Green color value 0-255",
+               "field": "DevGreen",
+               "required": false,
+               "type": "int",
+               "minimum": 0,
+               "maximum": 256
+           },
+           {
+               "name": "Set Blue Color 0-255 (256 to Unset)",
+               "description": "Enter Blue color value 0-255",
+               "field": "DevBlue",
+               "required": false,
+               "type": "int",
+               "minimum": 0,
+               "maximum": 256
+           },
+           {
+               "name": "Set ColorTemperature Value 2000-9000 (9001 to Unset)",
+               "description": "Enter Color Temperature from 2000-9000",
+               "field": "DevColorTemp",
+               "required": false,
+               "type": "int",
+               "minimum": 2000,
+               "maximum": 9001
+           },
+           {
+               "name": "Set Connected Device IP(s) , seperated multiple values",
+               "description": "Enter Govee devices IP seperate by ,",
+               "field": "GoveeIP",
+               "required": false,
+               "type": "string"
+           }
+   ]
+    }
+}
