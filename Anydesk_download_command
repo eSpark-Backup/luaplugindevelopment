@@ -1,0 +1,10 @@
+https://www.sysprobs.com/how-to-install-anydesk-ubuntu-gui-terminal
+
+Install AnyDesk using the Linux terminal
+sudo apt update
+wget -qO - https://keys.anydesk.com/repos/DEB-GPG-KEY | sudo apt-key add -
+NOTE: If you don’t have wget already installed, you have to install that first using this command.
+sudo apt install wget
+echo "deb http://deb.anydesk.com/ all main" | sudo tee /etc/apt/sources.list.d/anydesk-stable.list
+sudo apt update
+sudo apt install anydesk
