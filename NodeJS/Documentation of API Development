@@ -1,0 +1,37 @@
+Backend API Development using NodeJS (75mins)
+
+
+Our Goal is to:
+Create a API using NodeJS(use MongoDB is a plus), Use swagger to list the calling procedures/methods and deploy to Heroku,
+,Finishing the project using CI/CD with live posting some user inputs to AWS EC2
+
+
+
+
+Backend API writing and integration
+10mins	 Node.js API Tutorial for Beginners | Build a Basic Node.js REST API in 10 Minutes - Part 1(Basics of API using NodeJS)
+				https://www.youtube.com/watch?v=HPo0QhlX5Ao
+
+			
+Node.js API Tutorial for Beginners | Build a Basic Node.js REST API in 10 Minutes - Part 2(API InDepth using POSTMAN)(optional)
+				https://www.youtube.com/watch?v=iW7u-yFKgMw
+
+				
+		Node.js API Tutorial for Beginners | Build a Basic Node.js REST API in 10 Minutes - Part 3(Connecting NodeJS API to MongoDB)(optional)
+				https://www.youtube.com/watch?v=6GxJ8m2dak0
+
+Introduction to Swagger
+10mins	Autogenerating Swagger Documentation with Node & Express
+				https://www.youtube.com/watch?v=apouPYPh_as
+
+Backend deployment
+7mins		How to Deploy Node js Application on Heroku
+				https://www.youtube.com/watch?v=maNWl202vy4
+
+
+AWS EC2 / AWS ECS Fargate deployment
+45mins	CI/CD Pipeline Using GitHub Action| Auto Deploy Nodejs API on AWS EC2 step by step in Hindi		https://www.youtube.com/watch?v=3jXtTSnA8zw
+				
+
+
+
